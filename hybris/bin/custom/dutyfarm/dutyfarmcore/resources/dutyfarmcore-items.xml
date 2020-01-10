@@ -32,12 +32,111 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+
+        <enumtype generate="true" code="StateEnum" autocreate="true" dynamic="true">
+            <value code="SOLID"/>
+            <value code="LIQUID"/>
+        </enumtype>
     </enumtypes>
 
     <itemtypes>
 
         <!-- Add your item definitions here -->
+        <itemtype code="SeedProduct" extends="Product"
+                  generate="true" autocreate="true">
+            <deployment table="seedProduct" typecode="22000"/>
+        </itemtype>
 
+        <itemtype code="SeedVariantProduct" extends="VariantProduct"
+                  autocreate="true" generate="true">
+            <deployment table="seedVariantProduct" typecode="22001"/>
+            <attributes>
+                <attribute qualifier="weight" type="java.lang.Float">
+                    <description>Descrive il peso del prodotto</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="origin" type="java.lang.String">
+                    <description>Descrive il paese di provenienza del seme</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="growthTime" type="java.lang.String">
+                    <description>Descrive il tempo necessario per la crescita della pianta</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="FlowerPotProduct" extends="Product"
+                  generate="true" autocreate="true">
+            <deployment table="flowerPotProduct" typecode="22002"/>
+        </itemtype>
+
+        <itemtype code="FlowerPotVariantProduct" extends="VariantProduct"
+                  autocreate="true" generate="true">
+            <deployment table="flowerPotVariantProduct" typecode="22003"/>
+            <attributes>
+                <attribute qualifier="form" type="java.lang.String">
+                    <description>Descrive la forma della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="material" type="java.lang.String">
+                    <description>Descrive il materiale della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="color" type="SwatchColorEnum">
+                    <description>Descrive il colore della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="width" type="java.lang.Float">
+                    <description>Descrive la larghezza della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="height" type="java.lang.Float">
+                    <description>Descrive l'altezza della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="depth" type="java.lang.Float">
+                    <description>Descrive la profondità della fioriera</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="FertilizerProduct" extends="Product"
+                  generate="true" autocreate="true">
+            <deployment table="fertilizerProduct" typecode="22004"/>
+        </itemtype>
+
+        <itemtype code="FertilizerVariantProduct" extends="VariantProduct"
+                  autocreate="true" generate="true">
+            <deployment table="fertilizerVariantProduct" typecode="22005"/>
+            <attributes>
+                <attribute qualifier="weight" type="java.lang.Float">
+                    <description>Descrive il peso del fertilizzante</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="color" type="SwatchColorEnum">
+                    <description>Descrive il colore del fertilizzante</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="state" type="StateEnum">
+                    <description>Descrive lo stato del fertilizzante</description>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
 
