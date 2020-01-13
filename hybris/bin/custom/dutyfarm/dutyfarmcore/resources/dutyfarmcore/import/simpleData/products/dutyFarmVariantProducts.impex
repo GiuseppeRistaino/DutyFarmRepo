@@ -1,0 +1,20 @@
+$productCatalog=dutyFarmCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='check']
+
+INSERT_UPDATE TreeVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;weight;height;diameterStem;origin;scientificName
+                                ;A01A01;A01;1120334401;;;;;Acero rosso;20 kg;1.30 m;0.05 m; Austria;Acer rubrum
+                                ;A01A02;A01;1120334402;;;;;Acero rosso;10 kg;1.10 m;0.02 m;Italia;Acer rubrum
+                                ;A02A01;A02;1220334401;;;;;Abete;15 kg;1 m;0.02 m;Italia;Abies
+                                ;A02A02;A02;1220334402;;;;;Abete;10 kg;0.8 m;0.02 m;Danimarca;Abies
+                                ;A03A01;A03;1320334401;;;;;Bonsai;5 kg;0.5 m;0.5 m;Irlanda;Acer palmatum
+                                ;A03A02;A03;1320334402;;;;;Bonsai;7 kg;0.6 m;0.6 m;Italia;Acer palmatum
+
+INSERT_UPDATE FlowerVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;weight;height;color(code);scientificName
+                                  ;A04A01;A04;1420334401;;;;;Rosa di Damasco;2 kg;0.5 m;WHITE;Rose de Rescht
+                                  ;A04A02;A04;1420334402;;;;;Rosa di Damasco;3 kg;0.3 m;PINK;Rose de Rescht
+                                  ;A05A01;A05;1520334401;;;;;Margherita;2.5 kg;0.6 m;WHITE;Leucanthemum vulgare
+                                  ;A05A02;A05;1520334402;;;;;Margherita;3 kg;0.2 m;RED;Leucanthemum vulgare
+                                  ;A06A01;A06;1620334401;;;;;Orchidea Cimbidio;3 kg;0.3 m;PINK;Cymbidium
+                                  ;A06A02;A06;1620334402;;;;;Orchidea Cimbidio;3 kg;0.3 m;RED;Cymbidium
