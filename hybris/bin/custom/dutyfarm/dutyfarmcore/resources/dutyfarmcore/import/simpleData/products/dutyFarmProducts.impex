@@ -1,0 +1,33 @@
+$dutyFarmCatalog = dutyFarmCatalog
+$catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
+$approved=approvalstatus(code)[default='check']
+
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name; farmland
+;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso; terreno paludoso
+;A02;;;Tree;TreeVariantProduct;;1020334402;Abete;terreno acido
+;A03;;;Tree;TreeVariantProduct;;1020334403;Bonsai;sabbia di fiume
+
+INSERT_UPDATE FlowerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name; farmland
+;A04;;;Flower;FlowerVariantProduct;;1020334404;Rosa di Damasco; terreno argilloso
+;A05;;;Flower;FlowerVariantProduct;;1020334405;Margherita; terreno sabbioso
+;A06;;;Flower;FlowerVariantProduct;;1020334406;Orchidea Cimbidio; terreno acido
+
+INSERT_UPDATE VegetableProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name; farmland
+;A07;;;Vegetable;VegetableVariantProduct;;1020334407;Broccolo; terreno fertile
+;A08;;;Vegetable;VegetableVariantProduct;;1020334408;Pomodoro; terreno fertile
+;A09;;;Vegetable;VegetableVariantProduct;;1020334409;Patata; terreno fertile
+
+INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name
+;A10;;;Farmland;SeedVariantProduct;;1020334410;Semi di Pomodoro
+;A11;;;Farmland;SeedVariantProduct;;1020334411;Semi di Girasole
+;A12;;;Farmland;SeedVariantProduct;;1020334412;Semi di Tulipano
+
+INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name
+;A13;;;Farmland;FertilizerVariantProduct;;1020334413;Aptus All in one
+;A14;;;Farmland;FertilizerVariantProduct;;1020334414;Xtreme Gardening
+;A15;;;Farmland;FertilizerVariantProduct;;1020334415;Vialca Pomice Fine
+
+INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name
+;A16;;;Decoration;FlowerPotVariantProduct;;1020334416;Elho basics
+;A17;;;Decoration;FlowerPotVariantProduct;;1020334417;Bama
+;A18;;;Decoration;FlowerPotVariantProduct;;1020334418;Emsa

@@ -214,12 +214,12 @@
             </attributes>
         </itemtype>
 
-        <itemtype code="VegetablePlantProduct" extends= "PlantProduct" autocreate="true" generate="true">
+        <itemtype code="VegetableProduct" extends= "PlantProduct" autocreate="true" generate="true">
             <deployment table="vegetablePlantProduct" typecode="22010"/>
         </itemtype>
 
-        <itemtype code="VegetablePlantVariantProduct" extends= "VariantProduct" autocreate="true" generate="true">
-            <deployment table="vegetablePlantVariantProduct" typecode="22011"/>
+        <itemtype code="VegetableVariantProduct" extends= "VariantProduct" autocreate="true" generate="true">
+            <deployment table="vegetableVariantProduct" typecode="22011"/>
             <attributes>
                 <attribute qualifier="height" type="java.lang.Float">
                     <description>Descrive l'altezza del vegetale</description>
