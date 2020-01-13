@@ -51,7 +51,7 @@
                   autocreate="true" generate="true">
             <deployment table="seedVariantProduct" typecode="22001"/>
             <attributes>
-                <attribute qualifier="weight" type="java.lang.Float">
+                <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso del prodotto</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -93,17 +93,17 @@
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="width" type="java.lang.Float">
+                <attribute qualifier="width" type="java.lang.String">
                     <description>Descrive la larghezza della fioriera</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="height" type="java.lang.Float">
+                <attribute qualifier="height" type="java.lang.String">
                     <description>Descrive l'altezza della fioriera</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="depth" type="java.lang.Float">
+                <attribute qualifier="depth" type="java.lang.String">
                     <description>Descrive la profondità della fioriera</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -131,7 +131,7 @@
                   autocreate="true" generate="true">
             <deployment table="fertilizerVariantProduct" typecode="22005"/>
             <attributes>
-                <attribute qualifier="weight" type="java.lang.Float">
+                <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso del fertilizzante</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -161,12 +161,12 @@
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="height" type="java.lang.Float">
+                <attribute qualifier="height" type="java.lang.String">
                     <description>Descrive l'altezza della pianta contenente il fiore</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="weight" type="java.lang.Float">
+                <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso della pianta contenente il fiore</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -186,12 +186,12 @@
         <itemtype code="TreeVariantProduct" extends= "VariantProduct" autocreate="true" generate="true">
             <deployment table="treeVariantProduct" typecode="22009"/>
             <attributes>
-                <attribute qualifier="height" type="java.lang.Float">
+                <attribute qualifier="height" type="java.lang.String">
                     <description>Descrive l'altezza dell'albero</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="weight" type="java.lang.Float">
+                <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso dell'albero</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -206,7 +206,7 @@
                     <modifiers optional="false"/>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="diameterStem" type="java.lang.Float">
+                <attribute qualifier="diameterStem" type="java.lang.String">
                     <description>Descrive il diametro del fusto dell'albero</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>
@@ -221,12 +221,7 @@
         <itemtype code="VegetableVariantProduct" extends= "VariantProduct" autocreate="true" generate="true">
             <deployment table="vegetableVariantProduct" typecode="22011"/>
             <attributes>
-                <attribute qualifier="height" type="java.lang.Float">
-                    <description>Descrive l'altezza del vegetale</description>
-                    <modifiers optional="false"/>
-                    <persistence type="property"/>
-                </attribute>
-                <attribute qualifier="weight" type="java.lang.Float">
+                <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso del vegetale</description>
                     <modifiers optional="false"/>
                     <persistence type="property"/>

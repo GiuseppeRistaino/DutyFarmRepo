@@ -1,0 +1,37 @@
+$productCatalog=dutyFarmCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='check']
+
+
+INSERT_UPDATE SeedVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;weight;origin;growthTime
+                                ;A10A1;A10;2020334410;;;;;Semi di Pomodoro; 500 gr; Italia; 3 mesi
+                                ;A10A2;A10;2020334411;;;;;Semi di Pomodoro; 1000 gr; Italia; 3 mesi
+                                ;A11A1;A11;2020334412;;;;;Semi di Girasole; 500 gr; Messico; 3 mesi
+                                ;A11A2;A11;2020334413;;;;;Semi di Girasole; 1000 gr; Messico; 3 mesi
+                                ;A12A1;A12;2020334414;;;;;Semi di Tulipano; 500 gr; Olanda; 3 mesi
+                                ;A12A2;A12;2020334415;;;;;Semi di Tulipano; 1000 gr; Olanda; 3 mesi
+
+INSERT_UPDATE FertilizerVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;weight;color(code);state(code)
+                                      ;A13A1;A13;2020334416;;;;;Aptus All in one; 500 gr; BLACK; SOLID
+                                      ;A13A2;A13;2020334417;;;;;Aptus All in one; 1000 gr; BLACK; SOLID
+                                      ;A14A1;A14;2020334418;;;;;Xtreme Gardening; 50 ml; BLUE; LIQUID
+                                      ;A14A2;A14;2020334419;;;;;Xtreme Gardening; 100 ml; BLUE; LIQUID
+                                      ;A15A1;A15;2020334420;;;;;Vialca Pomice Fine; 50 ml; BROWN; LIQUID
+                                      ;A15A2;A15;2020334421;;;;;Vialca Pomice Fine; 100 ml; BROWN; LIQUID
+
+INSERT_UPDATE FlowerPotVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;form;material;color(code);width;height;depth
+                                     ;A16A1;A16;2020334422;;;;;Elho basics;rettangolare;legno;BROWN;120 cm;32.5 cm;40 cm
+                                     ;A16A2;A16;2020334423;;;;;Elho basics;rettangolare;legno;BROWN;220 cm; 32.5 cm; 45 cm
+                                     ;A17A1;A17;2020334424;;;;;Bama;rettangolare;resina;BROWN;80 cm; 42.5 cm; 42 cm
+                                     ;A17A2;A17;2020334425;;;;;Bama;rettangolare;resina;WHITE;80 cm; 42.5 cm; 42 cm
+                                     ;A18A1;A18;2020334426;;;;;Emsa;rettangolare;plastica;BLUE;80 cm; 42.5 cm; 42 cm
+                                     ;A18A2;A18;2020334427;;;;;Emsa;rettangolare;plastica;WHITE;80 cm; 42.5 cm; 42 cm
+
+INSERT_UPDATE VegetableVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name;weight;scientificName;farmingDifficulty;vegetableColor(code)
+                                     ;A07A1;A07;1020334428;;;;;Broccolo;500 gr.;Brassica oleracea;1;GREEN
+                                     ;A07A2;A07;1020334429;;;;;Broccolo;1000 gr.;Brassica oleracea;1;GREEN
+                                     ;A08A1;A08;1020334430;;;;;Pomodoro;500 gr.;Solanum lycopersicum;1;RED
+                                     ;A08A2;A08;1020334431;;;;;Pomodoro;1000 gr.;Solanum lycopersicum;1;RED
+                                     ;A09A1;A09;1020334432;;;;;Patata;500 gr.;Solanum tuberosum;1;YELLOW
+                                     ;A09A2;A09;1020334433;;;;;Patata;1000 gr.;Solanum tuberosum;1;YELLOW
