@@ -221,11 +221,7 @@
         <itemtype code="VegetableVariantProduct" extends= "VariantProduct" autocreate="true" generate="true">
             <deployment table="vegetableVariantProduct" typecode="22011"/>
             <attributes>
-                <attribute qualifier="height" type="java.lang.String">
-                    <description>Descrive l'altezza del vegetale</description>
-                    <modifiers optional="false"/>
-                    <persistence type="property"/>
-                </attribute>
+
                 <attribute qualifier="weight" type="java.lang.String">
                     <description>Descrive il peso del vegetale</description>
                     <modifiers optional="false"/>
