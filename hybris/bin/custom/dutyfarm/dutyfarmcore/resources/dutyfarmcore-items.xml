@@ -41,6 +41,37 @@
 
     <itemtypes>
 
+        <itemtype code="BaseStore" autocreate="false" generate="false">
+            <attributes>
+                <attribute qualifier="dutyFarm" type="DutyFarm">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="DutyFarm" generate="true" autocreate="true">
+            <deployment table="dutyFarm" typecode="23000"/>
+            <attributes>
+                <attribute qualifier="codeDutyFarm" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="city" type="localized:java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="country" type="localized:java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
         <!-- Add your item definitions here -->
         <itemtype code="SeedProduct" extends="Product"
                   generate="true" autocreate="true">

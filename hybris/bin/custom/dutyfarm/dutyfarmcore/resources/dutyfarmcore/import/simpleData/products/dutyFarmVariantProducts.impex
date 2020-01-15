@@ -51,4 +51,5 @@ INSERT_UPDATE VegetableVariantProduct;code[unique=true];$baseProduct;ean;unit(co
                                      ;A08A2;A08;1020334431;;;;;Pomodoro;1000 gr.;Solanum lycopersicum;1;RED
                                      ;A09A1;A09;1020334432;;;;;Patata;500 gr.;Solanum tuberosum;1;YELLOW
                                      ;A09A2;A09;1020334433;;;;;Patata;1000 gr.;Solanum tuberosum;1;YELLOW
+                                     ;A09A3;A09;1020334434;;;;;Patata Rossa;500 gr.;Solanum rebrum tuberosum;4;RED
 
