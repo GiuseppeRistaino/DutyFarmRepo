@@ -6,9 +6,8 @@ import de.hybris.platform.servicelayer.search.SearchResult;
 import org.apache.log4j.Logger;
 import org.dutyfarm.core.dao.FlowerPotDao;
 import org.dutyfarm.core.jalo.FlowerPotProduct;
-import org.dutyfarm.core.model.FertilizerProductModel;
 import org.dutyfarm.core.model.FlowerPotProductModel;
-import org.dutyfarm.core.model.SeedVariantProductModel;
+
 
 import java.util.List;
 
@@ -29,6 +28,5 @@ public class DefaultFlowerPotDao extends DefaultGenericDao<FlowerPotProductModel
         final SearchResult<FlowerPotProductModel> result = this.getFlexibleSearchService().search(fsq);
         return result.getResult();
     }
-
 
 }

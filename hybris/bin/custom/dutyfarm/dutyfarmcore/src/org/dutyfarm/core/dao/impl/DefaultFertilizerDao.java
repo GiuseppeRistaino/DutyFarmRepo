@@ -1,5 +1,6 @@
 package org.dutyfarm.core.dao.impl;
 
+
 import de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.SearchResult;

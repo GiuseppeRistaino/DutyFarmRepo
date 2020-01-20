@@ -19,7 +19,7 @@ public class DefaultFertilizerVariantDao extends DefaultGenericDao<FertilizerVar
 
     @Override
     public List<FertilizerVariantProductModel> findFertilizersByState(String state) {
-        LOG.info("Invoke method findFertilizersByState in DefaultFertilizerDao");
+        LOG.info("Invoke method findFertilizersByState in DefaultFertilizerVariantDao");
         final StringBuilder queryStr = new StringBuilder();
         queryStr.append("SELECT {f.pk} FROM {");
         queryStr.append("FertilizerVariantProduct AS f");

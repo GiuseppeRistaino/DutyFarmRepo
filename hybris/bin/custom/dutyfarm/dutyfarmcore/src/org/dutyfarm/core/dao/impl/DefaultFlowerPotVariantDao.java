@@ -19,7 +19,7 @@ public class DefaultFlowerPotVariantDao extends DefaultGenericDao<FlowerPotVaria
 
     @Override
     public List<FlowerPotVariantProductModel> findFlowerPotByMaterial(String material) {
-        LOG.info("Invoke method findFlowerPotByMaterial in DefaultFlowerPotDao");
+        LOG.info("Invoke method findFlowerPotByMaterial in DefaultFlowerPotVariantDao");
         final StringBuilder queryStr = new StringBuilder();
         queryStr.append("SELECT {f.pk} FROM {FlowerPotProduct AS f}");
         queryStr.append("WHERE {f.material} = ?material");
