@@ -25,6 +25,23 @@
 	<import resource="classpath:/dutyfarmcore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/dutyfarmcore/integration/hot-folder-common-spring.xml"/>
 
+
+	<!--DAO-->
+    <alias name="defaultFlowerDao" alias="flowerDao"/>
+    <bean id="defaultFlowerDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.FlowerProductModel)._TYPECODE}"/>
+    </bean>
+
+    <alias name="defaultPlantDao" alias="plantDao"/>
+    <bean id="defaultPlantDao" class="org.dutyfarm.core.dao.impl.DefaultPlantDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.PlantProductModel)._TYPECODE}"/>
+    </bean>
+
+    <alias name="defaultTreeDao" alias="treeDao"/>
+    <bean id="defaultTreeDao" class="org.dutyfarm.core.dao.impl.DefaultTreeDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.TreeProductModel)._TYPECODE}"/>
+    </bean>
+
 	<!-- SystemSetup for the DutyfarmCore -->
 	<bean id="acceleratorCoreSystemSetup" class="org.dutyfarm.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
