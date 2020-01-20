@@ -10,7 +10,7 @@ import org.dutyfarm.core.model.FlowerVariantProductModel;
 
 import java.util.List;
 
-public class DefaultFlowerDao extends DefaultGenericDao implements FlowerDao {
+public class DefaultFlowerDao extends DefaultGenericDao<FlowerProductModel> implements FlowerDao {
 
     private static final Logger LOG = Logger.getLogger(DefaultFlowerDao.class);
 
@@ -28,15 +28,4 @@ public class DefaultFlowerDao extends DefaultGenericDao implements FlowerDao {
         return result.getResult();
     }
 
-    @Override
-    public List<FlowerVariantProductModel> findFlowersByColor(String color) {
-        LOG.info("Invoke method findFlowersByColor in DefaultFlowerDao");
-        final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {p.pk} FROM {FlowerVariantProduct as p} WHERE {p.color} = ?color");
-
-        final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
-        fsq.addQueryParameter("color", color);
-        final SearchResult<FlowerVariantProductModel> result = this.getFlexibleSearchService().search(fsq);
-        return result.getResult();
-    }
 }

@@ -26,11 +26,46 @@
 	<import resource="classpath:/dutyfarmcore/integration/hot-folder-common-spring.xml"/>
 
 
-	<!--DAO-->
+	<!-- DAO -->
+    <alias name="defaultFertilizerDao" alias="fertilizerDao"/>
+    <bean id="defaultFertilizerDao" class="org.dutyfarm.core.dao.impl.DefaultFertilizerDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.FertilizerProductModel)._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultFertilizerVariantDao" alias="fertilizerVariantDao"/>
+	<bean id="defaultFertilizerVariantDao" class="org.dutyfarm.core.dao.impl.DefaultFertilizerVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.FertilizerVariantProductModel)._TYPECODE}"/>
+	</bean>
+
+    <alias name="defaultFlowerPotDao" alias="flowerPotDao"/>
+    <bean id="defaultFlowerPotDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerPotDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.FlowerPotProductModel)._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultFlowerPotVariantDao" alias="flowerPotVariantDao"/>
+	<bean id="defaultFlowerPotVariantDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerPotVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.FlowerPotVariantProductModel)._TYPECODE}"/>
+	</bean>
+
+    <alias name="defaultSeedDao" alias="seedDao"/>
+    <bean id="defaultSeedDao" class="org.dutyfarm.core.dao.impl.DefaultSeedDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.SeedProductModel)._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultSeedVariantDao" alias="seedVariantDao"/>
+	<bean id="defaultSeedVariantDao" class="org.dutyfarm.core.dao.impl.DefaultSeedVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.SeedVariantProductModel)._TYPECODE}"/>
+	</bean>
+
     <alias name="defaultFlowerDao" alias="flowerDao"/>
     <bean id="defaultFlowerDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerDao">
         <constructor-arg value="#{T(org.dutyfarm.core.model.FlowerProductModel)._TYPECODE}"/>
     </bean>
+
+	<alias name="defaultFlowerVariantDao" alias="flowerVariantDao"/>
+	<bean id="defaultFlowerVariantDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.FlowerVariantProductModel)._TYPECODE}"/>
+	</bean>
 
     <alias name="defaultPlantDao" alias="plantDao"/>
     <bean id="defaultPlantDao" class="org.dutyfarm.core.dao.impl.DefaultPlantDao">
@@ -38,9 +73,25 @@
     </bean>
 
     <alias name="defaultTreeDao" alias="treeDao"/>
-    <bean id="defaultTreeDao" class="org.dutyfarm.core.dao.impl.DefaultTreeDao">
-        <constructor-arg value="#{T(org.dutyfarm.core.model.TreeProductModel)._TYPECODE}"/>
-    </bean>
+	<bean id="defaultTreeDao" class="org.dutyfarm.core.dao.impl.DefaultTreeDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.TreeProductModel)._TYPECODE}"/>
+	</bean>
+
+	<alias name="defaultTreeVariantDao" alias="treeVariantDao"/>
+	<bean id="defaultTreeVariantDao" class="org.dutyfarm.core.dao.impl.DefaultTreeVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.TreeVariantProductModel)._TYPECODE}"/>
+	</bean>
+
+	<alias name="defaultVegetableDao" alias="vegetableDao"/>
+	<bean id="defaultVegetableDao" class="org.dutyfarm.core.dao.impl.DefaultVegetableDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.VegetableProductModel)._TYPECODE}"/>
+	</bean>
+
+	<alias name="defaultVegetableVariantDao" alias="vegetableVariantDao"/>
+	<bean id="defaultVegetableVariantDao" class="org.dutyfarm.core.dao.impl.DefaultVegetableVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.VegetableVariantProductModel)._TYPECODE}"/>
+	</bean>
+
 
 	<!-- SystemSetup for the DutyfarmCore -->
 	<bean id="acceleratorCoreSystemSetup" class="org.dutyfarm.core.setup.CoreSystemSetup"

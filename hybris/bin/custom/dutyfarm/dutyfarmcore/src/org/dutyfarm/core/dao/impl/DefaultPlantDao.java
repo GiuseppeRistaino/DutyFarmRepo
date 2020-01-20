@@ -9,7 +9,7 @@ import org.dutyfarm.core.model.PlantProductModel;
 
 import java.util.List;
 
-public class DefaultPlantDao extends DefaultGenericDao implements PlantDao {
+public class DefaultPlantDao extends DefaultGenericDao<PlantProductModel> implements PlantDao {
 
     private static final Logger LOG = Logger.getLogger(DefaultPlantDao.class);
 

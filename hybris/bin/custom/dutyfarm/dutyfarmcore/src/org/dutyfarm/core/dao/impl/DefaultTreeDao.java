@@ -10,7 +10,7 @@ import org.dutyfarm.core.model.TreeVariantProductModel;
 
 import java.util.List;
 
-public class DefaultTreeDao extends DefaultGenericDao implements TreeDao {
+public class DefaultTreeDao extends DefaultGenericDao<TreeProductModel> implements TreeDao {
 
     private static final Logger LOG = Logger.getLogger(DefaultTreeDao.class);
 
@@ -28,15 +28,5 @@ public class DefaultTreeDao extends DefaultGenericDao implements TreeDao {
         return result.getResult();
     }
 
-    @Override
-    public List<TreeVariantProductModel> findTreesByOrigin(String origin) {
-        LOG.info("Invoke method findTreesByOrigin in DefaultTreeDao");
-        final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {p.pk} FROM {TreeVariantProduct as p} WHERE {p.origin} = ?origin");
 
-        final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
-        fsq.addQueryParameter("origin", origin);
-        final SearchResult<TreeVariantProductModel> result = this.getFlexibleSearchService().search(fsq);
-        return result.getResult();
-    }
 }

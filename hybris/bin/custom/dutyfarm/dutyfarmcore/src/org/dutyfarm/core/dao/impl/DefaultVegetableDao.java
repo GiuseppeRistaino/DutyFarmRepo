@@ -6,11 +6,10 @@ import de.hybris.platform.servicelayer.search.SearchResult;
 import org.apache.log4j.Logger;
 import org.dutyfarm.core.dao.VegetableDao;
 import org.dutyfarm.core.model.VegetableProductModel;
-import org.dutyfarm.core.model.VegetableVariantProductModel;
 
 import java.util.List;
 
-public class DefaultVegetableDao extends DefaultGenericDao implements VegetableDao {
+public class DefaultVegetableDao extends DefaultGenericDao<VegetableProductModel> implements VegetableDao {
 
     private static final Logger LOG = Logger.getLogger(DefaultVegetableDao.class);
 
@@ -28,15 +27,5 @@ public class DefaultVegetableDao extends DefaultGenericDao implements VegetableD
         return result.getResult();
     }
 
-    @Override
-    public List<VegetableVariantProductModel> findVegetablesByFarmingDifficulty(int farmingDifficulty) {
-        LOG.info("Invoke method findVegetablesByFarmingDifficulty in DefaultVegetableDao");
-        final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {p.pk} FROM {VegetableVariantProduct as p} WHERE {p.farmingDifficulty} = ?farmingDifficulty");
 
-        final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
-        fsq.addQueryParameter("farmingDifficulty", farmingDifficulty);
-        final SearchResult<VegetableVariantProductModel> result = this.getFlexibleSearchService().search(fsq);
-        return result.getResult();
-    }
 }
