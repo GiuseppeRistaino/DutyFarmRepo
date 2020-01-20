@@ -2,10 +2,10 @@ $dutyFarmCatalog = dutyFarmCatalog
 $catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
 
 INSERT_UPDATE Category; code[unique = true]; $catalogVersion; supercategories(code, $catalogVersion); allowedPrincipals(uid)[default= 'customergroup']
-                        ;Farm;;;
-                        ;Plant;;Farm;
-                        ;Tree;;Plant;
-                        ;Flower;;Plant;
-                        ;Vegetable;;Plant
-                        ;Decoration;;Farm;
-                        ;Farmland;;Farm;
+                      ;Farm;;;
+                      ;Plant;;Farm;
+                      ;Tree;;Plant;
+                      ;Flower;;Plant;
+                      ;Vegetable;;Plant
+                      ;Decoration;;Farm;
+                      ;Farmland;;Farm;

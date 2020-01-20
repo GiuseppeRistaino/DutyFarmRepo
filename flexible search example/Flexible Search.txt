@@ -1,0 +1,43 @@
+1. Selezionare tutti i nomi dei PlantProduct
+
+SELECT {f.name} FROM {PlantProduct AS f}
+
+2. Selezionare tutte le varianti dei fiori che crescono nel terreno sabbioso
+
+SELECT {f.name}, {f.weight}, {f.height}, {s.code}, {f.scientificName} FROM {
+	FlowerProduct AS fp 
+    JOIN
+    FlowerVariantProduct AS f
+    ON
+    {fp.PK} = {f.baseProduct}
+    JOIN
+    SwatchColorEnum AS s
+    ON
+    {s.PK} = {f.color} 
+}
+WHERE {fp.farmland} = 'terreno sabbioso'
+
+3. Selezionare tutti i fertilizzanti di tipo liquido
+
+SELECT {f.name}, {f.weight}, {s.code}, {st.code} FROM {
+	FertilizerVariantProduct AS f
+    JOIN
+    SwatchColorEnum AS s
+    ON
+    {s.PK} = {f.color}
+    JOIN
+    StateEnum AS st
+    ON
+    {st.PK} = {f.state}
+}
+WHERE {st.code} = 'LIQUID'
+
+4. Visualizzare in ordine crescente di difficoltà di coltivazione tutti i vegetali
+
+select {v.name}, {v.farmingDifficulty}
+from {VegetableVariantProduct as v}
+order by {v.farmingDifficulty}
+
+
+
+
