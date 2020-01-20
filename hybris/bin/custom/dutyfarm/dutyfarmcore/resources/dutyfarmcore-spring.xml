@@ -25,6 +25,38 @@
 	<import resource="classpath:/dutyfarmcore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/dutyfarmcore/integration/hot-folder-common-spring.xml"/>
 
+
+	<!-- DAO -->
+    <alias name="defaultFertilizerDao" alias="fertilizerDao"/>
+    <bean id="defaultFertilizerDao" class="org.dutyfarm.core.dao.impl.DefaultFertilizerDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.FertilizerProductModel)._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultFertilizerVariantDao" alias="fertilizerVariantDao"/>
+	<bean id="defaultFertilizerVariantDao" class="org.dutyfarm.core.dao.impl.DefaultFertilizerVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.FertilizerVariantProductModel)._TYPECODE}"/>
+	</bean>
+
+    <alias name="defaultFlowerPotDao" alias="flowerPotDao"/>
+    <bean id="defaultFlowerPotDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerPotDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.FlowerPotProductModel._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultFlowerPotVariantDao" alias="flowerPotVariantDao"/>
+	<bean id="defaultFlowerPotVariantDao" class="org.dutyfarm.core.dao.impl.DefaultFlowerPotVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.FlowerPotVariantProductModel._TYPECODE}"/>
+	</bean>
+
+    <alias name="defaultSeedDao" alias="seedDao"/>
+    <bean id="defaultSeedDao" class="org.dutyfarm.core.dao.impl.DefaultSeedDao">
+        <constructor-arg value="#{T(org.dutyfarm.core.model.SeedProductModel._TYPECODE}"/>
+    </bean>
+
+	<alias name="defaultSeedVariantDao" alias="seedVariantDao"/>
+	<bean id="defaultSeedVariantDao" class="org.dutyfarm.core.dao.impl.DefaultSeedVariantDao">
+		<constructor-arg value="#{T(org.dutyfarm.core.model.SeedVariantProductModel._TYPECODE}"/>
+	</bean>
+
 	<!-- SystemSetup for the DutyfarmCore -->
 	<bean id="acceleratorCoreSystemSetup" class="org.dutyfarm.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
