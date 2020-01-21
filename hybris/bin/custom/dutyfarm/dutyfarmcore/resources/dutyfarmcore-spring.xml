@@ -123,6 +123,45 @@
 		<property name="seedVariantDao" ref="seedVariantDao"/>
 	</bean>
 
+	<alias name="defaultFlowerService" alias="flowerService"/>
+	<bean id="defaultFlowerService" class="org.dutyfarm.core.service.impl.DefaultFlowerService">
+		<property name="flowerDao" ref="flowerDao"/>
+	</bean>
+
+	<alias name="defaultFlowerVariantService" alias="flowerVariantService"/>
+	<bean id="defaultFlowerVariantService" class="org.dutyfarm.core.service.impl.DefaultFlowerVariantService">
+		<property name="flowerVariantDao" ref="flowerVariantDao"/>
+	</bean>
+
+	<alias name="defaultPlantService" alias="plantService"/>
+	<bean id="defaultPlantService" class="org.dutyfarm.core.service.impl.DefaultPlantService">
+		<property name="plantDao" ref="plantDao"/>
+	</bean>
+
+	<alias name="defaultTreeService" alias="treeService"/>
+	<bean id="defaultTreeService" class="org.dutyfarm.core.service.impl.DefaultTreeService">
+		<property name="treeDao" ref="treeDao"/>
+	</bean>
+
+	<alias name="defaultTreeVariantService" alias="treeVariantService"/>
+	<bean id="defaultTreeVariantService" class="org.dutyfarm.core.service.impl.DefaultTreeVariantService">
+		<property name="treeVariantDao" ref="treeVariantDao"/>
+	</bean>
+
+	<alias name="defaultVegetableService" alias="vegetableService"/>
+	<bean id="defaultVegetableService" class="org.dutyfarm.core.service.impl.DefaultVegetableService">
+		<property name="vegetableDao" ref="vegetableDao"/>
+	</bean>
+
+	<alias name="defaultVegetableVariantService" alias="vegetableVariantService"/>
+	<bean id="defaultVegetableVariantService" class="org.dutyfarm.core.service.impl.DefaultVegetableVariantService">
+		<property name="vegetableVariantDao" ref="vegetableVariantDao"/>
+	</bean>
+
+
+
+
+
 	<!-- SystemSetup for the DutyfarmCore -->
 	<bean id="acceleratorCoreSystemSetup" class="org.dutyfarm.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
