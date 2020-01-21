@@ -92,6 +92,36 @@
 		<constructor-arg value="#{T(org.dutyfarm.core.model.VegetableVariantProductModel)._TYPECODE}"/>
 	</bean>
 
+	<!-- SERVICE -->
+	<alias name="defaultFertilizerService" alias="fertilizerService"/>
+	<bean id="defaultFertilizerService" class="org.dutyfarm.core.service.impl.DefaultFertilizerService" >
+		<property name="fertilizerDao" ref="fertilizerDao"/>
+	</bean>
+
+	<alias name="defaultFertilizerVariantService" alias="fertilizerVariantService"/>
+	<bean id="defaultFertilizerVariantService" class="org.dutyfarm.core.service.impl.DefaultFertilizerVariantService" >
+		<property name="fertilizerVariantDao" ref="fertilizerVariantDao"/>
+	</bean>
+
+	<alias name="defaultFlowerPotService" alias="flowerPotService"/>
+	<bean id="defaultFlowerPotService" class="org.dutyfarm.core.service.impl.DefaultFlowerPotService" >
+		<property name="flowerPotDao" ref="flowerPotDao"/>
+	</bean>
+
+	<alias name="defaultFlowerPotVariantService" alias="flowerPotVariantService"/>
+	<bean id="defaultFlowerPotVariantService" class="org.dutyfarm.core.service.impl.DefaultFlowerPotVariantService" >
+		<property name="flowerPotVariantDao" ref="flowerPotVariantDao"/>
+	</bean>
+
+	<alias name="defaultSeedService" alias="seedService"/>
+	<bean id="defaultSeedService" class="org.dutyfarm.core.service.impl.DefaultSeedService" >
+		<property name="seedDao" ref="seedDao"/>
+	</bean>
+
+	<alias name="defaultSeedVariantService" alias="seedVariantService"/>
+	<bean id="defaultSeedVariantService" class="org.dutyfarm.core.service.impl.DefaultSeedVariantService" >
+		<property name="seedVariantDao" ref="seedVariantDao"/>
+	</bean>
 
 	<!-- SystemSetup for the DutyfarmCore -->
 	<bean id="acceleratorCoreSystemSetup" class="org.dutyfarm.core.setup.CoreSystemSetup"
