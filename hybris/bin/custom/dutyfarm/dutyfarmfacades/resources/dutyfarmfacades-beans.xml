@@ -19,4 +19,65 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="org.dutyfarm.facades.product.data.SwatchColorEnumData">
+		<property name="code" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.product.data.StateEnumData">
+		<property name="code" type="String"/>
+	</bean>
+
+
+	<bean class="org.dutyfarm.facades.data.FertilizerProductData">
+		<property name="code" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FertilizerProductVariantData">
+		<property name="code" type="String"/>
+		<property name="baseProduct" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+		<property name="weight" type="String"/>
+		<property name="color" type="org.dutyfarm.facades.product.data.SwatchColorEnumData"/>
+		<property name="state" type="org.dutyfarm.facades.product.data.StateEnumData"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.SeedProductData">
+		<property name="code" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.SeedProductVariantData">
+		<property name="code" type="String"/>
+		<property name="baseProduct" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+		<property name="weight" type="String"/>
+		<property name="origin" type="String"/>
+		<property name="growthTime" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerPotProductData">
+		<property name="code" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerPotProductVariantData">
+		<property name="code" type="String"/>
+		<property name="baseProduct" type="String"/>
+		<property name="ean" type="String"/>
+		<property name="name" type="String"/>
+		<property name="form" type="String"/>
+		<property name="material" type="String"/>
+		<property name="color" type="org.dutyfarm.facades.product.data.SwatchColorEnumData"/>
+		<property name="width" type="String"/>
+		<property name="height" type="String"/>
+		<property name="depth" type="String"/>
+	</bean>
+
 </beans>
