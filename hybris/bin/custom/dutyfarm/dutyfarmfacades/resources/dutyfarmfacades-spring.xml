@@ -17,7 +17,41 @@
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 		
-	<context:annotation-config/> 
+	<context:annotation-config/>
+
+	<!-- POPULATOR -->
+
+	<alias name="defaultSwatchColorDataPopulator" alias="swatchColorDataPopulator"/>
+	<bean id="defaultSwatchColorDataPopulator" class="org.dutyfarm.facades.populators.SwatchColorDataPopulator" >
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<alias name="defaultStatePopulator" alias="stateDataPopulator"/>
+	<bean id="defaultStatePopulator" class="org.dutyfarm.facades.populators.StateDataPopulator" >
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<!-- CONVERT -->
+	<alias name="defaultSwatchColorConverter" alias="swatchColorConverter"/>
+	<bean id="defaultSwatchColorConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="populators">
+			<list>
+				<ref bean="swatchColorDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultStateConverter" alias="stateConverter"/>
+	<bean id="defaultStateConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.StateData"/>
+		<property name="populators">
+			<list>
+				<ref bean="stateDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
 	<bean id="defaultSimpleSuggestionFacade" class="org.dutyfarm.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >

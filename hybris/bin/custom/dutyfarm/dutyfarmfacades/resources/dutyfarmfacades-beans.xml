@@ -20,12 +20,14 @@
 		<property name="genders" type="java.util.List&lt;org.dutyfarm.facades.product.data.GenderData>"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.SwatchColorEnumData">
+	<bean class="org.dutyfarm.facades.data.SwatchColorData">
 		<property name="code" type="String"/>
+		<property name="name" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.StateEnumData">
+	<bean class="org.dutyfarm.facades.data.StateData">
 		<property name="code" type="String"/>
+		<property name="name" type="String"/>
 	</bean>
 
 
@@ -35,14 +37,14 @@
 		<property name="name" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.FertilizerProductVariantData">
+	<bean class="org.dutyfarm.facades.data.FertilizerVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
 		<property name="name" type="String"/>
 		<property name="weight" type="String"/>
-		<property name="color" type="org.dutyfarm.facades.data.SwatchColorEnumData"/>
-		<property name="state" type="org.dutyfarm.facades.data.StateEnumData"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="state" type="org.dutyfarm.facades.data.StateData"/>
 	</bean>
 
 	<bean class="org.dutyfarm.facades.data.SeedProductData">
@@ -51,7 +53,7 @@
 		<property name="name" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.SeedProductVariantData">
+	<bean class="org.dutyfarm.facades.data.SeedVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
@@ -88,7 +90,7 @@
 		<property name="farmland" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.FlowerProductVariantData">
+	<bean class="org.dutyfarm.facades.data.FlowerVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
@@ -104,21 +106,21 @@
 		<property name="name" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.FlowerPotProductVariantData">
+	<bean class="org.dutyfarm.facades.data.FlowerPotVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
 		<property name="name" type="String"/>
 		<property name="form" type="String"/>
 		<property name="material" type="String"/>
-		<property name="color" type="org.dutyfarm.facades.data.SwatchColorEnumData"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
 		<property name="width" type="String"/>
 		<property name="height" type="String"/>
 		<property name="depth" type="String"/>
 	</bean>
 
 
-	<bean class="org.dutyfarm.facades.data.TreeProductVariantData">
+	<bean class="org.dutyfarm.facades.data.TreeVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
@@ -130,14 +132,14 @@
 		<property name="scientificName" type="String"/>
 	</bean>
 
-	<bean class="org.dutyfarm.facades.data.VegetableProductVariantData">
+	<bean class="org.dutyfarm.facades.data.VegetableVariantProductData">
 		<property name="code" type="String"/>
 		<property name="baseProduct" type="String"/>
 		<property name="ean" type="String"/>
 		<property name="name" type="String"/>
 		<property name="weight" type="String"/>
 		<property name="height" type="String"/>
-		<property name="color" type="org.dutyfarm.facades.data.SwatchColorEnumData"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
 		<property name="scientificName" type="String"/>
 	</bean>
 
