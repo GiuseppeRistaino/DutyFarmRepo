@@ -1,30 +1,44 @@
 package org.dutyfarm.facades.populators;
 
 import de.hybris.platform.converters.Populator;
+import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
+import de.hybris.platform.variants.model.VariantProductModel;
 import org.apache.log4j.Logger;
 import org.dutyfarm.core.model.FlowerPotProductModel;
 import org.dutyfarm.facades.data.FlowerPotProductData;
 
-public class FlowerPotPopulator implements Populator<FlowerPotProductModel, FlowerPotProductData> {
+public class FlowerPotPopulator implements Populator<ProductModel, FlowerPotProductData>  {
     
     private static final Logger LOG = Logger.getLogger(FlowerPotPopulator.class);
 
     @Override
-    public void populate(FlowerPotProductModel source, FlowerPotProductData target) throws ConversionException {
+    public void populate(ProductModel source, FlowerPotProductData target) throws ConversionException {
         LOG.info("Invoke method populate in FlowerPotPopulator");
-        if(source.getCode() != null) 
+
+        final ProductModel baseProduct = getBaseProduct(source);
+
+        if (baseProduct instanceof FlowerPotProductModel)
         {
-            target.setCode(source.getCode());   
+            final FlowerPotProductModel flowerPotProductModel = (FlowerPotProductModel) baseProduct;
+            if(flowerPotProductModel.getCode() != null) {
+                target.setCode(flowerPotProductModel.getCode());
+            }
+            if(flowerPotProductModel.getName() != null) {
+                target.setName(flowerPotProductModel.getName());
+            }
         }
-        if(source.getEan() != null) 
+    }
+
+    protected ProductModel getBaseProduct(final ProductModel productModel)
+    {
+        ProductModel currentProduct = productModel;
+        while (currentProduct instanceof VariantProductModel)
         {
-            target.setEan(source.getEan());
+            final VariantProductModel variant = (VariantProductModel) currentProduct;
+            currentProduct = variant.getBaseProduct();
         }
-        if(source.getName() != null) 
-        {
-            target.setName(source.getName());
-        }
+        return currentProduct;
     }
     
 }
