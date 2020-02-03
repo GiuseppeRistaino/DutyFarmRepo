@@ -58,6 +58,36 @@
 	<bean id="defaultSeedVariantPopulator" class="org.dutyfarm.facades.populators.SeedVariantPopulator" >
 	</bean>
 
+	<alias name="defaultPlantPopulator" alias="plantPopulator"/>
+	<bean id="defaultPlantPopulator" class="org.dutyfarm.facades.populators.PlantPopulator" >
+	</bean>
+
+	<alias name="defaultVegetablePopulator" alias="vegetablePopulator"/>
+	<bean id="defaultVegetablePopulator" class="org.dutyfarm.facades.populators.VegetablePopulator" >
+	</bean>
+
+	<alias name="defaultVegetableVariantPopulator" alias="vegetableVariantPopulator"/>
+	<bean id="defaultVegetableVariantPopulator" class="org.dutyfarm.facades.populators.VegetableVariantPopulator" >
+		<property name="swatchColorConverter" ref="swatchColorConverter"/>
+	</bean>
+
+	<alias name="defaultTreePopulator" alias="treePopulator"/>
+	<bean id="defaultTreePopulator" class="org.dutyfarm.facades.populators.TreePopulator" >
+	</bean>
+
+	<alias name="defaultTreeVariantPopulator" alias="treeVariantPopulator"/>
+	<bean id="defaultTreeVariantPopulator" class="org.dutyfarm.facades.populators.TreeVariantPopulator" >
+	</bean>
+
+	<alias name="defaultFlowerPopulator" alias="flowerPopulator"/>
+	<bean id="defaultFlowerPopulator" class="org.dutyfarm.facades.populators.FlowerPopulator" >
+	</bean>
+
+	<alias name="defaultFlowerVariantPopulator" alias="flowerVariantPopulator"/>
+	<bean id="defaultFlowerVariantPopulator" class="org.dutyfarm.facades.populators.FlowerVariantPopulator" >
+		<property name="swatchColorConverter" ref="swatchColorConverter"/>
+	</bean>
+
 	<!-- CONVERT -->
 	<alias name="defaultSwatchColorConverter" alias="swatchColorConverter"/>
 	<bean id="defaultSwatchColorConverter" parent="abstractPopulatingConverter">
@@ -139,6 +169,75 @@
 		</property>
 	</bean>
 
+	<alias name="defaultPlantConverter" alias="plantConverter"/>
+	<bean id="defaultPlantConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.PlantProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="plantPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFlowerConverter" alias="flowerConverter"/>
+	<bean id="defaultFlowerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.FlowerProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="flowerPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFlowerVariantConverter" alias="flowerVariantConverter"/>
+	<bean id="defaultFlowerVariantConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.FlowerVariantProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="flowerVariantPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultTreeConverter" alias="treeConverter"/>
+	<bean id="defaultTreeConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.TreeProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="treePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultTreeVariantConverter" alias="treeVariantConverter"/>
+	<bean id="defaultTreeVariantConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.TreeVariantProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="treeVariantPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultVegetableConverter" alias="vegetableConverter"/>
+	<bean id="defaultVegetableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.VegetableProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="vegetablePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultVegetableVariantConverter" alias="vegetableVariantConverter"/>
+	<bean id="defaultVegetableVariantConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.VegetableVariantProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="vegetableVariantPopulator"/>
+			</list>
+		</property>
+	</bean>
 
 	<!-- FACADES -->
 	<alias  name="defaultFertilizerFacade" alias="fertilizerFacade"/>
@@ -183,6 +282,55 @@
 		<property name="seedVariantConverter" ref="seedVariantConverter" />
 	</bean>
 
+	<alias  name="defaultPlantFacade" alias="plantFacade"/>
+	<bean id="defaultPlantFacade"
+		  class="org.dutyfarm.facades.impl.DefaultPlantFacade">
+		<property name="plantService" ref="plantService" />
+		<property name="plantConverter" ref="plantConverter" />
+	</bean>
+
+	<alias  name="defaultFlowerFacade" alias="flowerFacade"/>
+	<bean id="defaultFlowerFacade"
+		  class="org.dutyfarm.facades.impl.DefaultFlowerFacade">
+		<property name="flowerService" ref="flowerService" />
+		<property name="flowerConverter" ref="flowerConverter" />
+	</bean>
+
+	<alias  name="defaultFlowerVariantFacade" alias="flowerVariantFacade"/>
+	<bean id="defaultFlowerVariantFacade"
+		  class="org.dutyfarm.facades.impl.DefaultFlowerVariantFacade">
+		<property name="flowerVariantService" ref="flowerVariantService" />
+		<property name="flowerVariantConverter" ref="flowerVariantConverter" />
+	</bean>
+
+	<alias  name="defaultVegetableFacade" alias="vegetableFacade"/>
+	<bean id="defaultVegetableFacade"
+		  class="org.dutyfarm.facades.impl.DefaultVegetableFacade">
+		<property name="vegetableService" ref="vegetableService" />
+		<property name="vegetableConverter" ref="vegetableConverter" />
+	</bean>
+
+	<alias  name="defaultVegetableVariantFacade" alias="vegetableVariantFacade"/>
+	<bean id="defaultVegetableVariantFacade"
+		  class="org.dutyfarm.facades.impl.DefaultVegetableVariantFacade">
+		<property name="vegetableVariantService" ref="vegetableVariantService" />
+		<property name="vegetableVariantConverter" ref="vegetableVariantConverter" />
+	</bean>
+
+	<alias  name="defaultTreeFacade" alias="treeFacade"/>
+	<bean id="defaultTreeFacade"
+		  class="org.dutyfarm.facades.impl.DefaultTreeFacade">
+		<property name="treeService" ref="treeService" />
+		<property name="treeConverter" ref="treeConverter" />
+	</bean>
+
+
+	<alias  name="defaultTreeVariantFacade" alias="treeVariantFacade"/>
+	<bean id="defaultTreeVariantFacade"
+		  class="org.dutyfarm.facades.impl.DefaultTreeVariantFacade">
+		<property name="treeVariantService" ref="treeVariantService" />
+		<property name="treeVariantConverter" ref="treeVariantConverter" />
+	</bean>
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
 	<bean id="defaultSimpleSuggestionFacade" class="org.dutyfarm.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
