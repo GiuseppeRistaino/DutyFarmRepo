@@ -29,7 +29,7 @@ public class FertilizerVariantPopulator implements Populator<ProductModel, Ferti
     public void populate(ProductModel source, FertilizerVariantProductData target) throws ConversionException {
         LOG.info("Invoke method populate in FertilizerVariantPopulator");
 
-        if (source instanceof VariantProductModel)
+        if (source instanceof FertilizerVariantProductModel)
         {
             final FertilizerVariantProductModel fertilizerVariantProductModel = (FertilizerVariantProductModel) source;
             if(fertilizerVariantProductModel.getCode() != null) {

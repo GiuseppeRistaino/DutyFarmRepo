@@ -84,8 +84,8 @@
 	<bean class="org.dutyfarm.facades.data.VegetableVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="ean" type="String"/>
 		<property name="weight" type="String"/>
-		<property name="height" type="String"/>
-		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="farmingDifficulty" type="String"/>
+		<property name="vegetableColor" type="org.dutyfarm.facades.data.SwatchColorData"/>
 		<property name="scientificName" type="String"/>
 	</bean>
 
