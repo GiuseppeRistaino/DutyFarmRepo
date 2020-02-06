@@ -31,7 +31,9 @@
 	</bean>
 
 
-	<bean class="org.dutyfarm.facades.data.FertilizerProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+	<bean class="org.dutyfarm.facades.data.FertilizerProductData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
 	</bean>
 
 	<bean class="org.dutyfarm.facades.data.FertilizerVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">

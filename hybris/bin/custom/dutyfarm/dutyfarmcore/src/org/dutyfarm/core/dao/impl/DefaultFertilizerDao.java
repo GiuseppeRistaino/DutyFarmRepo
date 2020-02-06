@@ -22,9 +22,10 @@ public class DefaultFertilizerDao extends DefaultGenericDao<FertilizerProductMod
     public List<FertilizerProductModel> findAllFertilizers() {
         LOG.info("Invoke method findAllFertilizers in DefaultFertilizerDao");
         final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {f.pk} FROM {FertilizerProduct AS f}");
+        queryStr.append("SELECT {"+ FertilizerProductModel.PK +"} FROM {" + FertilizerProductModel._TYPECODE +"}");
         final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
-        final SearchResult<FertilizerProductModel> result = this.getFlexibleSearchService().search(fsq);
+        final SearchResult<FertilizerProductModel> result = getFlexibleSearchService().search(fsq);
+        LOG.info("Number of elements in result (FertilizeProductModel): " +result.getResult().size());
         return result.getResult();
     }
 

@@ -22,10 +22,10 @@ INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; unit(code)[defau
 ;A11;;;Farmland;SeedVariantProduct;;1020334411;Semi di Girasole
 ;A12;;;Farmland;SeedVariantProduct;;1020334412;Semi di Tulipano
 
-INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name
-;A13;;;Farmland;FertilizerVariantProduct;;1020334413;Aptus All in one
-;A14;;;Farmland;FertilizerVariantProduct;;1020334414;Xtreme Gardening
-;A15;;;Farmland;FertilizerVariantProduct;;1020334415;Vialca Pomice Fine
+INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
+;A13;;;Farmland;FertilizerVariantProduct;;1020334413;Aptus All in one;Aptus All in one
+;A14;;;Farmland;FertilizerVariantProduct;;1020334414;Xtreme Gardening;Xtreme Gardening
+;A15;;;Farmland;FertilizerVariantProduct;;1020334415;Vialca Pomice Fine;Vialca Pomice Fine
 
 INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name
 ;A16;;;Decoration;FlowerPotVariantProduct;;1020334416;Elho basics
