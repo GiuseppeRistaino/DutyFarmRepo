@@ -79,7 +79,8 @@ public interface ControllerConstants
 		{
 			interface DutyFarm
 			{
-				String DutyFarmFertilizerPage = "pages/dutyFarm/fertilizers";
+				//String DutyFarmFertilizerPage = "pages/dutyFarm/fertilizers";
+				String DutyFarmFertilizerPage = "pages/category/productListPage";
 			}
 
 			interface Account // NOSONAR
