@@ -121,7 +121,7 @@
 
 	<alias name="defaultFertilizerVariantConverter" alias="fertilizerVariantConverter"/>
 	<bean id="defaultFertilizerVariantConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="org.dutyfarm.facades.data.FertilizerProductData"/>
+		<property name="targetClass" value="org.dutyfarm.facades.data.FertilizerVariantProductData"/>
 		<property name="populators">
 			<list>
 				<ref bean="fertilizerVariantPopulator"/>

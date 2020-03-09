@@ -80,6 +80,18 @@ public interface ControllerConstants
 			interface DutyFarm
 			{
 				String DutyFarmFertilizerPage = "pages/dutyFarm/fertilizers";
+				String DutyFarmPlantPage = "pages/dutyFarm/plants";
+				String DutyFarmFlowerPage = "pages/dutyFarm/flowers";
+				String DutyFarmTreePage = "pages/dutyFarm/trees";
+				String DutyFarmVegetablePage = "pages/dutyFarm/vegetables";
+				String DutyFarmSeedPage = "pages/dutyFarm/seeds";
+				String DutyFarmFlowerPotPage = "pages/dutyFarm/flowerPots";
+				String DutyFarmFertilizerVariantPage = "pages/dutyFarm/fertilizerVariants";
+				String DutyFarmFlowerVariantPage = "pages/dutyFarm/flowerVariants";
+				String DutyFarmTreeVariantPage = "pages/dutyFarm/treeVariants";
+				String DutyFarmVegetableVariantPage = "pages/dutyFarm/vegetableVariants";
+				String DutyFarmSeedVariantPage = "pages/dutyFarm/seedVariants";
+				String DutyFarmFlowerPotVariantPage = "pages/dutyFarm/flowerPotVariants";
 			}
 
 			interface Account // NOSONAR
