@@ -11,19 +11,44 @@
 #
 # Import the CMS content for the site emails
 #
-$contentCatalog=__CONTENT_CATALOG_NAME__
+$contentCatalog=dutyFarmContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $wideContent=CMSImageComponent,BannerComponent
 
 # Import config properties into impex macros
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
 
 # Email page Template
 INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerRegistrationEmailTemplate;Customer Registration Email Template;true;customerRegistrationEmail;dutyfarm_Email_Customer_Registration_Subject;dutyfarm_Email_Customer_Registration_Body;EmailPage
+;;ForgottenPasswordEmailTemplate;Forgotten Password Email Template;true;forgottenPasswordEmail;dutyfarm_Email_Forgotten_Password_Subject;dutyfarm_Email_Forgotten_Password_Body;EmailPage
+;;OrderConfirmationEmailTemplate;Order Confirmation Email Template;true;orderConfirmationEmail;dutyfarm_Email_Order_Confirmation_Subject;dutyfarm_Email_Order_Confirmation_Body;EmailPage
+;;DeliverySentEmailTemplate;Delivery Sent Email Template;true;deliverySentEmail;dutyfarm_Email_Delivery_Sent_Subject;dutyfarm_Email_Delivery_Sent_Body;EmailPage
+;;ReadyForPickupEmailTemplate;Ready For Pickup Email Template;true;readyForPickupEmail;dutyfarm_Email_Ready_For_Pickup_Subject;dutyfarm_Email_Ready_For_Pickup_Body;EmailPage
+;;OrderCancelledEmailTemplate;Order Cancelled Email Template;true;orderCancelledEmail;dutyfarm_Email_Order_Cancelled_Subject;dutyfarm_Email_Order_Cancelled_Body;EmailPage
+;;OrderRefundEmailTemplate;Order Refund Email Template;true;orderRefundEmail;dutyfarm_Email_Order_Refund_Subject;dutyfarm_Email_Order_Refund_Body;EmailPage
+;;OrderCollectionReminderEmailTemplate;Order Collection Reminder Email Template;true;orderCollectionReminderEmail;dutyfarm_Email_Order_Collection_Reminder_Subject;dutyfarm_Email_Order_Collection_Reminder_Body;EmailPage
+;;OrderMoveToCsEmailTemplate;Order Moved To CS Email Template;true;orderMoveToCsEmail;dutyfarm_Email_Order_Move_To_CS_Subject;dutyfarm_Email_Order_Move_To_CS_Body;EmailPage
+;;OrderPartiallyCanceledEmailTemplate;Order Partially Canceled Email Template;true;orderPartiallyCanceledEmail;dutyfarm_Email_Order_Partially_Canceled_Subject;dutyfarm_Email_Order_Partially_Canceled_Body;EmailPage
+;;OrderPartiallyRefundedEmailTemplate;Order Partially Refunded Email Template;true;orderPartiallyRefundedEmail;dutyfarm_Email_Order_Partially_Refunded_Subject;dutyfarm_Email_Order_Partially_Refunded_Body;EmailPage
+;;NotPickedUpConsignmentCanceledEmailTemplate;Not Picked Up Consignment Canceled Email Template;true;notPickedUpConsignmentCanceledEmail;dutyfarm_Email_NotPickedUpConsignment_Canceled_Subject;dutyfarm_Email_NotPickedUpConsignment_Canceled_Body;EmailPage
 
 # Templates for CMS Cockpit Page Edit
 UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerRegistrationEmailTemplate;$jarResourceCms/structure-view/structure_customerRegistrationEmailTemplate.vm
+;;ForgottenPasswordEmailTemplate;$jarResourceCms/structure-view/structure_forgottenPasswordEmailTemplate.vm
+;;OrderConfirmationEmailTemplate;$jarResourceCms/structure-view/structure_orderConfirmationEmailTemplate.vm
+;;DeliverySentEmailTemplate;$jarResourceCms/structure-view/structure_deliverySentEmailTemplate.vm
+;;ReadyForPickupEmailTemplate;$jarResourceCms/structure-view/structure_readyForPickupEmailTemplate.vm
+;;OrderCancelledEmailTemplate;$jarResourceCms/structure-view/structure_orderCancelledEmailTemplate.vm
+;;OrderRefundEmailTemplate;$jarResourceCms/structure-view/structure_orderRefundEmailTemplate.vm
+;;OrderCollectionReminderEmailTemplate;$jarResourceCms/structure-view/structure_orderCollectionReminderEmailTemplate.vm
+;;OrderMoveToCsEmailTemplate;$jarResourceCms/structure-view/structure_orderMoveToCSEmailTemplate.vm
+;;OrderPartiallyCanceledEmailTemplate;$jarResourceCms/structure-view/structure_orderPartiallyCanceledEmailTemplate.vm
+;;OrderPartiallyRefundedEmailTemplate;$jarResourceCms/structure-view/structure_orderPartiallyRefundedEmailTemplate.vm
+;;NotPickedUpConsignmentCanceledEmailTemplate;$jarResourceCms/structure-view/structure_notPickedUpConsignmentCanceledEmailTemplate.vm
 
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerRegistrationEmailTemplate'];validComponentTypes(code)
 ;SiteLogo;;;logo
@@ -81,26 +106,6 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;BottomContent;;$wideContent;
 
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='NotPickedUpConsignmentCanceledEmailTemplate'];validComponentTypes(code)
-;SiteLogo;;;logo
-;TopContent;;$wideContent;
-;BottomContent;;$wideContent;
-
-INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteBuyerSubmissionEmailTemplate'];validComponentTypes(code)
-;SiteLogo;;;logo
-;TopContent;;$wideContent;
-;BottomContent;;$wideContent;
-
-INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteToExpireSoonEmailTemplate'];validComponentTypes(code)
-;SiteLogo;;;logo
-;TopContent;;$wideContent;
-;BottomContent;;$wideContent;
-
-INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteExpiredEmailTemplate'];validComponentTypes(code)
-;SiteLogo;;;logo
-;TopContent;;$wideContent;
-;BottomContent;;$wideContent;
-
-INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteBuyerCancellationEmailTemplate'];validComponentTypes(code)
 ;SiteLogo;;;logo
 ;TopContent;;$wideContent;
 ;BottomContent;;$wideContent;
@@ -167,37 +172,70 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;TopContent-OrderCollectionReminderEmail;TopContent;;EmailTopSlot;true
 ;;BottomContent-OrderCollectionReminderEmail;BottomContent;;EmailBottomSlot;true
 
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteBuyerSubmissionEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;SiteLogo-QuoteBuyerSubmissionEmail;SiteLogo;;EmailSiteLogoSlot;true
-;;TopContent-QuoteBuyerSubmissionEmail;TopContent;;EmailTopSlot;true
-;;BottomContent-QuoteBuyerSubmissionEmail;BottomContent;;EmailBottomSlot;true
-
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteToExpireSoonEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;SiteLogo-QuoteToExpireSoonEmail;SiteLogo;;EmailSiteLogoSlot;true
-;;TopContent-QuoteToExpireSoonEmail;TopContent;;EmailTopSlot;true
-;;BottomContent-QuoteToExpireSoonEmail;BottomContent;;EmailBottomSlot;true
-
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteExpiredEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;SiteLogo-QuoteExpiredEmail;SiteLogo;;EmailSiteLogoSlot;true
-;;TopContent-QuoteExpiredEmail;TopContent;;EmailTopSlot;true
-;;BottomContent-QuoteExpiredEmail;BottomContent;;EmailBottomSlot;true
-
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteBuyerCancellationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;SiteLogo-QuoteBuyerCancellationEmail;SiteLogo;;EmailSiteLogoSlot;true
-;;TopContent-QuoteBuyerCancellationEmail;TopContent;;EmailTopSlot;true
-;;BottomContent-QuoteBuyerCancellationEmail;BottomContent;;EmailBottomSlot;true
-
 # Email Pages
 INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;
+;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;
+;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;
+;;DeliverySentEmail;Delivery Sent Email;DeliverySentEmailTemplate;true;
+;;ReadyForPickupEmail;Ready For Pickup Email;ReadyForPickupEmailTemplate;true;
+;;OrderCancelledEmail;Order Cancelled Email;OrderCancelledEmailTemplate;true;
+;;OrderRefundEmail;Order Refund Email;OrderRefundEmailTemplate;true;
+;;OrderCollectionReminderEmail;Order Collection Reminder Email;OrderCollectionReminderEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;OrderMoveToCsEmail;Order Move To CS Email;OrderMoveToCsEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;OrderPartiallyCanceledEmail;Order Partially Canceled Email;OrderPartiallyCanceledEmailTemplate;true;
+;;OrderPartiallyRefundedEmail;Order Partially Refunded Email;OrderPartiallyRefundedEmailTemplate;true;
+;;NotPickedUpConsignmentCanceledEmail;Not Picked Up Consignment Canceled Email;NotPickedUpConsignmentCanceledEmailTemplate;true;
 
 # CMS components velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;dutyfarm-CMSImageComponent-template;java.util.Map
+;dutyfarm-BannerComponent-template;java.util.Map
+;dutyfarm-SimpleBannerComponent-template;java.util.Map
+;dutyfarm-CMSLinkComponent-template;java.util.Map
+;dutyfarm-CMSParagraphComponent-template;java.util.Map
 
 # Email velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;dutyfarm_Email_Customer_Registration_Body;$emailPackageName.CustomerEmailContext
+;dutyfarm_Email_Forgotten_Password_Body;$emailPackageName.ForgottenPasswordEmailContext
+;dutyfarm_Email_Order_Confirmation_Body;$emailPackageName.OrderNotificationEmailContext
+;dutyfarm_Email_Delivery_Sent_Body;$emailPackageName.DeliverySentEmailContext
+;dutyfarm_Email_Ready_For_Pickup_Body;$emailPackageName.ReadyForPickupEmailContext
+;dutyfarm_Email_Order_Cancelled_Body;$emailPackageName.OrderCancelledEmailContext
+;dutyfarm_Email_Order_Refund_Body;$emailPackageName.OrderRefundEmailContext
+;dutyfarm_Email_Order_Collection_Reminder_Body;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;dutyfarm_Email_Order_Move_To_CS_Body;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;dutyfarm_Email_Order_Partially_Canceled_Body;$emailPackageName.OrderPartiallyCanceledEmailContext
+;dutyfarm_Email_Order_Partially_Refunded_Body;$emailPackageName.OrderPartiallyRefundedEmailContext
+;dutyfarm_Email_NotPickedUpConsignment_Canceled_Body;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
+;dutyfarm_Email_Customer_Registration_Subject;$emailPackageName.CustomerEmailContext
+;dutyfarm_Email_Forgotten_Password_Subject;$emailPackageName.ForgottenPasswordEmailContext
+;dutyfarm_Email_Order_Confirmation_Subject;$emailPackageName.OrderNotificationEmailContext
+;dutyfarm_Email_Delivery_Sent_Subject;$emailPackageName.DeliverySentEmailContext
+;dutyfarm_Email_Ready_For_Pickup_Subject;$emailPackageName.ReadyForPickupEmailContext
+;dutyfarm_Email_Order_Cancelled_Subject;$emailPackageName.OrderCancelledEmailContext
+;dutyfarm_Email_Order_Refund_Subject;$emailPackageName.OrderRefundEmailContext
+;dutyfarm_Email_Order_Collection_Reminder_Subject;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;dutyfarm_Email_Order_Move_To_CS_Subject;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;dutyfarm_Email_Order_Partially_Canceled_Subject;$emailPackageName.OrderPartiallyCanceledEmailContext
+;dutyfarm_Email_Order_Partially_Refunded_Subject;$emailPackageName.OrderPartiallyRefundedEmailContext
+;dutyfarm_Email_NotPickedUpConsignment_Canceled_Subject;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
 
 # Preview Image for use in the CMS Cockpit
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
 ;;EmailPageModel_preview;text/gif;EmailPageModel_preview.gif;$jarResourceCms/preview-images/EmailPageModel_preview.gif
 
 UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerRegistrationEmail;EmailPageModel_preview
+;;ForgottenPasswordEmail;EmailPageModel_preview
+;;OrderConfirmationEmail;EmailPageModel_preview
+;;DeliverySentEmail;EmailPageModel_preview
+;;ReadyForPickupEmail;EmailPageModel_preview
+;;OrderCancelledEmail;EmailPageModel_preview
+;;OrderRefundEmail;EmailPageModel_preview
+;;OrderCollectionReminderEmail;EmailPageModel_preview
+;;OrderMoveToCsEmail;EmailPageModel_preview
+;;OrderPartiallyCanceledEmail;EmailPageModel_preview
+;;OrderPartiallyRefundedEmail;EmailPageModel_preview
+;;NotPickedUpConsignmentCanceledEmail;EmailPageModel_preview

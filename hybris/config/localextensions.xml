@@ -15,6 +15,21 @@
 		<extension name="dutyfarmtest"/>
 		<extension name="dutyfarmstorefront"/>
 		<extension name="dutyfarmbackoffice"/>
+		<extension name="dutyfarmsmartedit"/>
+		
+		<extension name="addonsupport"/>
+        <extension name="smarteditaddon"/>
+       
+        <extension name="cmsbackoffice"/>
+        <extension name="cmssmartedit"/>
+        <extension name="cmssmarteditwebservices"/>
+        <extension name="cmswebservices"/>
+        <extension name="permissionswebservices"/>
+        <extension name="previewwebservices"/>
+        <extension name="smartedit"/>
+        <extension name="smarteditwebservices"/>
+        <extension name="npmancillary" />
+		
 										
 		<!-- ext-platform-optional -->
 
