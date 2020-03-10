@@ -21,7 +21,7 @@ public class DefaultFlowerVariantDao extends DefaultGenericDao<FlowerVariantProd
     public List<FlowerVariantProductModel> findFlowersByColor(String color) {
         LOG.info("Invoke method findFlowersByColor in DefaultFlowerVariantDao");
         final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {p.pk} FROM {FlowerVariantProduct as p} WHERE {p.color} = ?color");
+        queryStr.append("SELECT {p.pk} FROM {FlowerVariantProduct as p JOIN SwatchColorEnum as s on {s.pk} = {p.color}} WHERE {s.code} = ?color");
 
         final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
         fsq.addQueryParameter("color", color);

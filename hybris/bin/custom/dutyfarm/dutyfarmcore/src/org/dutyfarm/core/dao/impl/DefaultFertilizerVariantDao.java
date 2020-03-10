@@ -22,7 +22,7 @@ public class DefaultFertilizerVariantDao extends DefaultGenericDao<FertilizerVar
         LOG.info("Invoke method findFertilizersByState in DefaultFertilizerVariantDao");
         final StringBuilder queryStr = new StringBuilder();
         queryStr.append("SELECT {f.pk} FROM {");
-        queryStr.append("FertilizerVariantProduct AS f");
+        queryStr.append("FertilizerVariantProduct AS f ");
         queryStr.append("JOIN StateEnum AS st ON {st.PK} = {f.state}");
         queryStr.append("} WHERE {st.code} = ?state");
         final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);

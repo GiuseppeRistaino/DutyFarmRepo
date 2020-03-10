@@ -21,7 +21,7 @@ public class DefaultSeedVariantDao extends DefaultGenericDao<SeedVariantProductM
     public List<SeedVariantProductModel> findSeedsByOrigin(String origin) {
         LOG.info("Invoke method findSeedsByOrigin in DefaultSeedVariantDao");
         final StringBuilder queryStr = new StringBuilder();
-        queryStr.append("SELECT {s.pk} FROM { SeedVariantProduct AS s }");
+        queryStr.append("SELECT {s.pk} FROM { SeedVariantProduct AS s } ");
         queryStr.append("WHERE {s.origin} = ?origin");
         final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
         fsq.addQueryParameter("origin", origin);
