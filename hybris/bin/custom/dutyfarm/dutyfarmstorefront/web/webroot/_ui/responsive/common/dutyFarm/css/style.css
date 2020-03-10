@@ -1,0 +1,52 @@
+.topHeaderSlot {
+     display: grid;
+     grid-template-columns: auto auto auto;
+     margin:10px;
+     margin-bottom:0px;
+     background-color:GREEN;
+}
+
+.test {
+      color: white;
+      font-size: 15px;
+      text-align: center;
+}
+
+.logo_nav_cart {
+     display: grid;
+     grid-template-areas: 'logo nav nav nav nav cart';
+     margin-left: 10px;
+     margin-right: 10px;
+}
+
+.siteLogo {
+     grid-area: logo;
+     width: 100%;
+     height: auto;
+     background-color: RED;
+     text-align: center;
+}
+
+.navBar {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-area: nav;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.miniCart {
+     grid-area: cart;
+     background-color: YELLOW;
+}
+
+.navBar_Component {
+      display: block;
+      padding: 0.5rem 1rem;
+}

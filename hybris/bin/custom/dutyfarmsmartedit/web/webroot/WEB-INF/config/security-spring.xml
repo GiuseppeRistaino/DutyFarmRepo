@@ -15,11 +15,11 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security 
 		http://www.springframework.org/schema/security/spring-security.xsd
-		http://www.springframework.org/schema/security/oauth2 
+		http://www.springframework.org/schema/security/oauth2
      	http://www.springframework.org/schema/security/spring-security-oauth2.xsd">
 
 
-	<beans>
+
 		<http pattern="/**" xmlns="http://www.springframework.org/schema/security" >
 			<intercept-url pattern="/**" requires-channel="https" />
 			<port-mappings>
@@ -38,5 +38,5 @@
 		</bean>	
 		
 		<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService" />
-	</beans>
+
 </beans>

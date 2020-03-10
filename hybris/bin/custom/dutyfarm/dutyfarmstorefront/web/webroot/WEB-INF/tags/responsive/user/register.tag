@@ -60,7 +60,7 @@
 	<template:errorSpanField path="termsCheck">
 		<div class="checkbox">
 			<label class="control-label uncased">
-				<form:checkbox id="registerChkTermsConditions" path="termsCheck" disabled="true"/>
+				<form:checkbox id="registerChkTermsConditions" path="termsCheck" disabled="false"/>
 				${ycommerce:sanitizeHTML(termsConditionsHtml)}
 			</label>
 		</div>
@@ -71,7 +71,7 @@
 	<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div>
 	<div class="form-actions clearfix">
 		<ycommerce:testId code="register_Register_button">
-			<button type="submit" class="btn btn-default btn-block" disabled="disabled">
+			<button type="submit" class="btn btn-default btn-block">
 				<spring:theme code='${actionNameKey}' />
 			</button>
 		</ycommerce:testId>

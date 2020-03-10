@@ -35,7 +35,7 @@
 
 	<%-- Favourite Icon --%>
 	<spring:theme code="img.favIcon" text="/" var="favIconPath"/>
-	
+
 	<c:choose>
 		<%-- if empty webroot, skip originalContextPath, simply use favIconPath --%>
 		<c:when test="${fn:length(originalContextPath) eq 1}" >
@@ -68,7 +68,7 @@
 
 	<%-- Load JavaScript required by the site --%>
 	<template:javaScript/>
-	
+
 	<%-- Inject any additional JavaScript required by the page --%>
 	<jsp:invoke fragment="pageScripts"/>
 
