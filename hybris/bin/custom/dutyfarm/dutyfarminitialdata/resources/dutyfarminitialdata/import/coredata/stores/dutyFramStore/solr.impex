@@ -13,11 +13,11 @@
 #
 $productCatalog=dutyfarmProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version);
-$facetSearchConfigName=dutyfarmIndex
+$facetSearchConfigName=dutyFarmIndex
 $facetSearchConfigDescription=Duty Farm Solr Idnex
 $searchIndexNamePrefix=dutyfarm
-$solrIndexedType=dutyfarmProductType
-$indexBaseSite=dutyfarm
+$solrIndexedType=dutyFarmProductType
+$indexBaseSite=dutyFarm
 $indexLanguages=ja,en,de,zh
 $indexCurrencies=JPY,USD
 

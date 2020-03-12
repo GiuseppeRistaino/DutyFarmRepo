@@ -1,5 +1,5 @@
-$dutyFarmCatalog = dutyFarmCatalog
-$catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
+$productCatalog=dutyFarmProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
 INSERT_UPDATE Category; code[unique = true]; $catalogVersion; supercategories(code, $catalogVersion); allowedPrincipals(uid)[default= 'customergroup']
                       ;Farm;;;
