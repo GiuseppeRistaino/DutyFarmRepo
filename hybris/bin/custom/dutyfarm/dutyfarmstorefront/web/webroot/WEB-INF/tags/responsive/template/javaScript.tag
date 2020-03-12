@@ -16,7 +16,7 @@
 	<c:otherwise>
 		<%-- jquery --%>
 		<script src="${commonResourcePathHtml}/js/jquery-3.2.1.min.js"></script>
-		
+
 		<%-- plugins --%>
 		<script src="${commonResourcePathHtml}/js/enquire.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/Imager.min.js"></script>
@@ -35,9 +35,9 @@
 		<script src="${commonResourcePathHtml}/js/jquery.currencies.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.waitforimages.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.slideviewer.custom.1.2.js"></script>
-		
+
 		<%-- Custom ACC JS --%>
-		
+
 		<script src="${commonResourcePathHtml}/js/acc.address.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.autocomplete.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.carousel.js"></script>
@@ -84,17 +84,17 @@
 		<script src="${commonResourcePathHtml}/js/acc.csv-import.js"></script>
 
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
-		
+
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>
 		</c:forEach>
-		
+
 		<%-- AddOn JavaScript files --%>
 		<c:forEach items="${addOnJavaScriptPaths}" var="addOnJavaScript">
 		    <script src="${fn:escapeXml(addOnJavaScript)}"></script>
 		</c:forEach>
-		
+
 	</c:otherwise>
 </c:choose>
 
