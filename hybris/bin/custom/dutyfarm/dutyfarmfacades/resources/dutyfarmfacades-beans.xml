@@ -103,6 +103,17 @@
 	</bean>
 
 
+	<bean class="org.dutyfarm.facades.data.DutyFarmMediaData" extends="de.hybris.platform.cmsfacades.data.MediaData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.DutyFarmCategoryData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+		<property name="picture" type="org.dutyfarm.facades.data.DutyFarmMediaData"/>
+		<property name="thumbnail" type="org.dutyfarm.facades.data.DutyFarmMediaData"/>
+	</bean>
+
+
 
 
 </beans>

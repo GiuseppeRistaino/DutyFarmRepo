@@ -11,21 +11,62 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<cms:pageSlot position="TopHeaderSlot" var="component" element="div" class="topHeaderSlot" >
-	<cms:component component="${component}" class="test" />
+<%-- MODIFICHE --%>
+<cms:pageSlot position="TopHeaderSlot" var="component" element="div" class="topHeaderSlot">
+    <cms:component component="${component}" element="div" class="component-topHeader" />
 </cms:pageSlot>
 
 <div class="logo_nav_cart">
-    <cms:pageSlot position="SiteLogo" var="logo" limit="1" class="siteLogo">
+    <cms:pageSlot position="SiteLogo" var="logo" limit="1" element="div" class="siteLogo">
        <cms:component component="${logo}" element="div" class="siteLogo_Component"/>
     </cms:pageSlot>
-    <cms:pageSlot position="NavigationBar" var="nav" class="navBar">
-           <cms:component component="${nav}" element="div" class="navBar_Component"/>
-        </cms:pageSlot>
+    <cms:pageSlot position="NavigationBar" var="nav" element="div" class="navBar">
+        <cms:component component="${nav}" element="div" class="navBar_Component"/>
+    </cms:pageSlot>
+    <div class="login-logout">
+        <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+            <li class="liOffcanvas">
+                <ycommerce:testId code="header_Login_link">
+                    <c:url value="/login" var="loginUrl" />
+                    <a href="${fn:escapeXml(loginUrl)}">
+                        <spring:theme code="header.link.login" />
+                    </a>
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+        <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
+            <li class="liOffcanvas">
+                <ycommerce:testId code="header_signOut">
+                    <c:url value="/logout" var="logoutUrl"/>
+                    <a href="${fn:escapeXml(logoutUrl)}">
+                        <spring:theme code="header.link.logout" />
+                    </a>
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+    </div>
+    <div class="account-name">
+        <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+            <c:set var="maxNumberChars" value="25" />
+            <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
+                <c:set target="${user}" property="firstName"
+                    value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+            </c:if>
+
+            <li class="logged_in js-logged_in">
+                <ycommerce:testId code="header_LoggedUser">
+                    <img class="icon-user" src="${commonResourcePath}/dutyFarm/images/user-solid.svg"/>
+                    <spring:theme code="${user.firstName},${user.lastName}" />
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+    </div>
+
     <cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCart">
       <cms:component component="${cart}" element="div" class="miniCart_Component"/>
     </cms:pageSlot>
 </div>
+
 
 <%--
 <header class="js-mainHeader">

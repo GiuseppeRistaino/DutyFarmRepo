@@ -21,6 +21,25 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <template:errorSpanField path="${path}">
+    <ycommerce:testId code="LoginPage_Item_${idKey}">
+        <spring:message code="${labelKey}" var="labelUsername"/>
+        <form:input class="input100" type="text"
+            id="${idKey}" path="${path}"
+            tabindex="${tabindex}" autocomplete="${autocomplete}" placeholder="${labelUsername}"
+    		disabled="${disabled}" maxlength="${maxlength}"/>
+        <c:choose>
+            <c:when test="${labelKey.equals('register.email')}">
+                <span class="focus-input100" data-placeholder="&#xf15a;"></span>
+            </c:when>
+            <c:otherwise>
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            </c:otherwise>
+        </c:choose>
+    </ycommerce:testId>
+</template:errorSpanField>
+
+<%-- OLD Version
+<template:errorSpanField path="${path}">
 	<ycommerce:testId code="LoginPage_Item_${idKey}">
 		<label class="control-label ${fn:escapeXml(labelCSS)}" for="${fn:escapeXml(idKey)}">
 			<spring:theme code="${labelKey}" />
@@ -37,3 +56,4 @@
 						
 	</ycommerce:testId>
 </template:errorSpanField>
+--%>

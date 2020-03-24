@@ -42,7 +42,6 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	private static final Logger LOG = Logger.getLogger(InitialDataSystemSetup.class);
 	public static final String DUTYFARM = "dutyFarm";
 
-
 	private static final String IMPORT_CORE_DATA = "importCoreData";
 	private static final String IMPORT_SAMPLE_DATA = "importSampleData";
 	private static final String ACTIVATE_SOLR_CRON_JOBS = "activateSolrCronJobs";
@@ -78,19 +77,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	@SystemSetup(type = Type.ESSENTIAL, process = Process.ALL)
 	public void createEssentialData(final SystemSetupContext context)
 	{
-		final List<ImportData> importData = new ArrayList<ImportData>();
 
-		final ImportData dutyFarmImportData = new ImportData();
-		dutyFarmImportData.setProductCatalogName(DUTYFARM);
-		dutyFarmImportData.setContentCatalogNames(Arrays.asList(DUTYFARM));
-		dutyFarmImportData.setStoreNames(Arrays.asList(DUTYFARM));
-		importData.add(dutyFarmImportData);
-
-		getCoreDataImportService().execute(this, context, importData);
-		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
-
-		getSampleDataImportService().execute(this, context, importData);
-		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 	}
 
 	/**
@@ -120,9 +107,19 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	@SystemSetup(type = Type.PROJECT, process = Process.ALL)
 	public void createProjectData(final SystemSetupContext context)
 	{
-		/*
-		 * Add import data for each site you have configured
-		 */
+		final List<ImportData> importData = new ArrayList<ImportData>();
+
+	   final ImportData sampleImportData = new ImportData();
+	   sampleImportData.setProductCatalogName(DUTYFARM);
+	   sampleImportData.setContentCatalogNames(Arrays.asList(DUTYFARM));
+	   sampleImportData.setStoreNames(Arrays.asList(DUTYFARM));
+	   importData.add(sampleImportData);
+
+	   getCoreDataImportService().execute(this, context, importData);
+	   getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
+
+	   getSampleDataImportService().execute(this, context, importData);
+	   getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 	}
 
 	public CoreDataImportService getCoreDataImportService()

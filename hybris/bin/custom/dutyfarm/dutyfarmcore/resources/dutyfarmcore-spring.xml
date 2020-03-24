@@ -27,6 +27,11 @@
 
 
 	<!-- DAO -->
+	<alias name="defaultDutyFarmProductDao" alias="dutyFarmProductDao"/>
+	<bean id="defaultDutyFarmProductDao" class="org.dutyfarm.core.dao.impl.DefaultDutyFarmProductDao">
+		<constructor-arg value="#{T(de.hybris.platform.core.model.product.ProductModel)._TYPECODE}"/>
+	</bean>
+
     <alias name="defaultFertilizerDao" alias="fertilizerDao"/>
     <bean id="defaultFertilizerDao" class="org.dutyfarm.core.dao.impl.DefaultFertilizerDao">
         <constructor-arg value="#{T(org.dutyfarm.core.model.FertilizerProductModel)._TYPECODE}"/>
@@ -93,6 +98,10 @@
 	</bean>
 
 	<!-- SERVICE -->
+	<alias name="defaultDutyFarmProductService" alias="dutyFarmProductService"/>
+	<bean id="defaultDutyFarmProductService" class="org.dutyfarm.core.service.impl.DefaultDutyFarmProductService" >
+	</bean>
+
 	<alias name="defaultFertilizerService" alias="fertilizerService"/>
 	<bean id="defaultFertilizerService" class="org.dutyfarm.core.service.impl.DefaultFertilizerService" >
 		<property name="fertilizerDao" ref="fertilizerDao"/>

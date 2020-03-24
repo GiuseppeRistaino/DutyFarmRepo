@@ -92,11 +92,13 @@ public interface ControllerConstants
 				String DutyFarmVegetableVariantPage = "pages/dutyFarm/vegetableVariants";
 				String DutyFarmSeedVariantPage = "pages/dutyFarm/seedVariants";
 				String DutyFarmFlowerPotVariantPage = "pages/dutyFarm/flowerPotVariants";
+				String DutyFarmShopPage = "pages/dutyFarm/shop";
 			}
 
 			interface Account // NOSONAR
 			{
-				String AccountLoginPage = "pages/account/accountLoginPage"; // NOSONAR
+				//String AccountLoginPage = "pages/account/accountLoginPage"; // NOSONAR
+				String AccountLoginPage = "pages/dutyFarm/login";
 				String AccountHomePage = "pages/account/accountHomePage"; // NOSONAR
 				String AccountOrderHistoryPage = "pages/account/accountOrderHistoryPage"; // NOSONAR
 				String AccountOrderPage = "pages/account/accountOrderPage"; // NOSONAR
@@ -107,7 +109,8 @@ public interface ControllerConstants
 				String AccountAddressBookPage = "pages/account/accountAddressBookPage"; // NOSONAR
 				String AccountEditAddressPage = "pages/account/accountEditAddressPage"; // NOSONAR
 				String AccountPaymentInfoPage = "pages/account/accountPaymentInfoPage"; // NOSONAR
-				String AccountRegisterPage = "pages/account/accountRegisterPage"; // NOSONAR
+				//String AccountRegisterPage = "pages/account/accountRegisterPage"; // NOSONAR
+				String AccountRegisterPage = "pages/dutyFarm/register"; // NOSONAR
 			}
 
 			interface Checkout // NOSONAR

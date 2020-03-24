@@ -8,13 +8,105 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing CMS Content
-# Macros / Replacement Parameter definitions
-$contentCatalog=__CONTENT_CATALOG_NAME__
+$contentCatalog=dutyFarmContentCatalog
+$contentCatalogName=dutyfarm Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=dutyFarmProductCatalog
+$productCatalogName=dutyfarm Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
 
-INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+$siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/productCatalogs/$productCatalog
+$jarResourceCms=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/cockpits/cmscockpit
+$picture=media(code, $contentCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+# CMS Site Settings
+UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV)
+#;dutyfarm;575;2053367
 
-INSERT_UPDATE FooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;showLanguageCurrency
+# Site Logo
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+                   ;;/images/theme/logo.png;logo.png;$siteResource/images/theme/logo.png;image/png;hybris Accelerator;
+                   ;;/images/theme/DutyFarm_Logo.png;DutyFarm_Logo.png;$siteResource/images/theme/DutyFarm_Logo.png;image/png;hybris Accelerator;
+                   ;;/images/theme/bg_1.jpg;bg_1.jpg;$siteResource/images/theme/bg_1.jpg;;hybris Accelerator;
+                   ;;/images/theme/bg_2.jpg;bg_2.jpg;$siteResource/images/theme/bg_2.jpg;;hybris Accelerator;
+                   ;;/images/theme/home_1.jpg;home_1.jpg;$siteResource/images/theme/home_1.jpg;;hybris Accelerator;
+
+# Site Logo Component
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture
+                                   ;;DutyFarmLogoComponent;DutyFarm Logo Component;DutyFarmLogoComponent;"/";/images/theme/DutyFarm_Logo.png
+                                   ;;DutyFarmCarouselAComponent;DutyFarm Carousel A Component;DutyFarmCarouselAComponent;"/";/images/theme/bg_2.jpg
+                                   ;;DutyFarmCarouselBComponent;DutyFarm Carousel B Component;DutyFarmCarouselBComponent;"/";/images/theme/home_1.jpg;home_1.jpg
+
+# CMS Image Components
+INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];name;$picture[lang='en']
+                               ;;DutyFarmCarouselAImage;DutyFarm Carousel A Image;/images/theme/bg_2.jpg
+                               ;;DutyFarmCarouselBImage;DutyFarm Carousel B Image;/images/theme/home_1.jpg;home_1.jpg
+
+# CMS Paragraph Component (Contact information)
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content[lang='en']
+                                   ;;DutyFarmPar1;DutyFarm Paragraph 1;DutyFarmPar1;DutyFarm
+                                   ;;DutyFarmPar2;DutyFarm Paragraph 2;DutyFarmPar2;via Antonio Salgazzi n°22 - Zungoli
+                                   ;;DutyFarmPar3;DutyFarm Paragraph 3;DutyFarmPar3;Per conoscerci meglio
+                                   ;;DutyFarmPar4;DutyFarm Paragraph 4;DutyFarmPar4;Bisogno di aiuto?
+
+
+# CMS Mini Cart Component
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount
+                               ;;MiniCartComponent;Mini Cart Component;MiniCartComponent;SUBTOTAL;3
+
+#CMS Navigation Bar  Bar Component -----------------------------------------------------------------------------------------------------------------------------------
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;target(code)[default='sameWindow'];linkName[lang='en']
+                              ;;DutyFarmHomeLink;DutyFarm Home Link;/;;Home
+                              ;;DutyFarmShopLink;DutyFarm Shop Link;dutyFarm/shop;;Shop
+                              ;;DutyFarmFAQLink;DutyFarm FAQ Link;/faq;;Servizio clienti
+                              ;;DutyFarmLoginLink;DutyFarm Login Link;/login;;Login
+                              ;;DutyFarmLogoutLink;DutyFarm Logout Link;/logout;;Logout
+                              ;;DutyFarmInfoLink;DutyFarm Info Link;/info;;Informazioni sul team DutyFarm
+
+# CMS Navigation Nodes #
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+                               ;root;;root;;
+
+# CMS Navigation Nodes
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(uid, $contentCV);&nodeRef
+                               ;DutyFarmRootNode;;DutyFarm Root Node;root;;DutyFarmRootNode
+                               ;DutyFarmTopHeaderNode;;DutyFarm Top Header Node;DutyFarmRootNode;;DutyFarmTopHeaderNode
+                               ;DutyFarmHomeNavNode;;DutyFarm Home Nav Node;DutyFarmTopHeaderNode;DutyFarmHomeLink;DutyFarmHomeNavNode
+
+
+# CMS Footer Component
+INSERT_UPDATE FooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;navigationNodes(uid,$contentCV);&componentRef;;;
+
+
+#Product Grid
+INSERT_UPDATE ListAddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+                                 ;;ListAddToCartAction;/cart/add;Product Add To Cart Action List;ListAddToCartAction
+
+INSERT_UPDATE ProductGridComponent;$contentCV[unique=true];uid[unique=true];name;actions(uid,$contentCV);&componentRef
+                                  ;;ProductGridComponent;Product Grid Component;ListAddToCartAction;ProductGridComponent
+
+INSERT_UPDATE ProductRefinementComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+                                        ;;RefinementFacetComponent;Product Refinement Facet Component;RefinementFacetComponent
+
+# Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+                         ;;SiteLogoSlot;DutyFarmLogoComponent
+                         ;;MiniCartSlot;MiniCartComponent
+                         ;;TopHeaderSlot;DutyFarmPar1,DutyFarmPar2
+                         ;;NavigationBarSlot;DutyFarmHomeLink, DutyFarmShopLink
+                         ;;CarouselASlot;DutyFarmCarouselAImage
+                         ;;CarouselBSlot;DutyFarmCarouselBImage
+                         ;;FooterSlot;DutyFarmPar3,DutyFarmPar4,DutyFarmInfoLink,DutyFarmFAQLink
+                         ;;ProductGridSlot;ProductGridComponent
+                         ;;ProductLeftRefinementsSlot;RefinementFacetComponent
+
+
+

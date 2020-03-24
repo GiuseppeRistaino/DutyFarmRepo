@@ -1,23 +1,38 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
-# ImpEx for Importing Products
-
-# Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$productCatalogName=__PRODUCT_CATALOG_FULL_NAME__
-
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$supercategories=supercategories(code, $catalogVersion)
-$baseProduct=baseProduct(code,$catalogVersion)
+$dutyFarmCatalog = dutyFarmProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
 $approved=approvalstatus(code)[default='check']
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/sampledata/productCatalogs/dutyFarmCatalog/images
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
-# Insert Products
-INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
+                         ;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso
+                         ;A02;;;Tree;TreeVariantProduct;;1020334402;Abete;Abete;terreno acido
+                         ;A03;;;Tree;TreeVariantProduct;;1020334403;Bonsai;Bonsai;sabbia di fiume
+
+INSERT_UPDATE FlowerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
+                           ;A04;;;Flower;FlowerVariantProduct;;1020334404;Rosa di Damasco;Rosa di Damasco; terreno argilloso
+                           ;A05;;;Flower;FlowerVariantProduct;;1020334405;Margherita; Margherita;terreno sabbioso
+                           ;A06;;;Flower;FlowerVariantProduct;;1020334406;Orchidea Cimbidio; Orchidea Cimbidio;terreno acido
+
+INSERT_UPDATE VegetableProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
+                              ;A07;;;Vegetable;VegetableVariantProduct;;1020334407;Broccolo; Broccolo;terreno fertile
+                              ;A08;;;Vegetable;VegetableVariantProduct;;1020334408;Pomodoro; Pomodoro;terreno fertile
+                              ;A09;;;Vegetable;VegetableVariantProduct;;1020334409;Patata;Patata; terreno fertile
+
+INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
+                         ;A10;;;Farmland;SeedVariantProduct;;1020334410;Semi di Pomodoro; Semi di Pomodoro
+                         ;A11;;;Farmland;SeedVariantProduct;;1020334411;Semi di Girasole;Semi di Girasole
+                         ;A12;;;Farmland;SeedVariantProduct;;1020334412;Semi di Tulipano; Semi di Tulipano
+
+INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
+                               ;A13;;;Farmland;FertilizerVariantProduct;;1020334413;Aptus All in one;Aptus All in one
+                               ;A14;;;Farmland;FertilizerVariantProduct;;1020334414;Xtreme Gardening;Xtreme Gardening
+                               ;A15;;;Farmland;FertilizerVariantProduct;;1020334415;Vialca Pomice Fine;Vialca Pomice Fine
+
+INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
+                              ;A16;;;Decoration;FlowerPotVariantProduct;;1020334416;Elho basics; Elho basics
+                              ;A17;;;Decoration;FlowerPotVariantProduct;;1020334417;Bama; Bama
+                              ;A18;;;Decoration;FlowerPotVariantProduct;;1020334418;Emsa;Emsa

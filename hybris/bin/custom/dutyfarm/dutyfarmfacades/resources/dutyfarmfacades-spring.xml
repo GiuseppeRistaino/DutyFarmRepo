@@ -21,6 +21,18 @@
 
 	<!-- POPULATOR -->
 
+	<alias name="defaultDutyFarmProductPopulator" alias="dutyFarmProductPopulator"/>
+	<bean id="defaultDutyFarmProductPopulator" class="org.dutyfarm.facades.populators.DutyFarmProductPopulator" >
+	</bean>
+
+	<alias name="defaultDutyFarmMediaDataPopulator" alias="dutyFarmMediaDataPopulator"/>
+	<bean id="defaultDutyFarmMediaDataPopulator" class="org.dutyfarm.facades.populators.DutyFarmMediaDataPopulator" >
+	</bean>
+
+	<alias name="defaultDutyFarmCategoryDataPopulator" alias="dutyFarmCategoryDataPopulator"/>
+	<bean id="defaultDutyFarmCategoryDataPopulator" class="org.dutyfarm.facades.populators.DutyFarmCategoryDataPopulator" >
+	</bean>
+
 	<alias name="defaultSwatchColorDataPopulator" alias="swatchColorDataPopulator"/>
 	<bean id="defaultSwatchColorDataPopulator" class="org.dutyfarm.facades.populators.SwatchColorDataPopulator" >
 		<property name="typeService" ref="typeService"/>
@@ -89,6 +101,36 @@
 	</bean>
 
 	<!-- CONVERT -->
+	<alias name="defaultDutyFarmProductConverter" alias="dutyFarmProductConverter"/>
+	<bean id="defaultDutyFarmProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="dutyFarmProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultDutyFarmCategoryConverter" alias="dutyFarmCategoryConverter"/>
+	<bean id="defaultDutyFarmCategoryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.DutyFarmCategoryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="dutyFarmCategoryDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultDutyFarmMediaConverter" alias="dutyFarmMediaConverter"/>
+	<bean id="defaultDutyFarmMediaConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.dutyfarm.facades.data.DutyFarmMediaData"/>
+		<property name="populators">
+			<list>
+				<ref bean="dutyFarmMediaDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
 	<alias name="defaultSwatchColorConverter" alias="swatchColorConverter"/>
 	<bean id="defaultSwatchColorConverter" parent="abstractPopulatingConverter">
 		<property name="targetClass" value="org.dutyfarm.facades.data.SwatchColorData"/>
@@ -240,6 +282,16 @@
 	</bean>
 
 	<!-- FACADES -->
+	<alias  name="defaultDutyFarmProductFacade" alias="dutyFarmProductFacade"/>
+	<bean id="defaultDutyFarmProductFacade"
+		  class="org.dutyfarm.facades.impl.DefaultDutyFarmProductFacade">
+	</bean>
+
+	<alias  name="defaultCategoryFacade" alias="categoryFacade"/>
+	<bean id="defaultCategoryFacade"
+		  class="org.dutyfarm.facades.impl.DefaultCategoryFacade">
+	</bean>
+
 	<alias  name="defaultFertilizerFacade" alias="fertilizerFacade"/>
 	<bean id="defaultFertilizerFacade"
 		  class="org.dutyfarm.facades.impl.DefaultFertilizerFacade">

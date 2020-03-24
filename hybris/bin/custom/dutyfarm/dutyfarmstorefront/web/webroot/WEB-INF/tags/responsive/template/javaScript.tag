@@ -7,6 +7,21 @@
 
 <template:javaScriptVariables/>
 
+    <%-- HOMEPAGE --%>
+    <script src="${commonResourcePath}/dutyFarm/js/carousel.js"></script>
+
+    <%-- LOGIN PAGE / REGISTER PAGE--%>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/animsition/js/animsition.min.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/select2/select2.min.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/vendor/countdowntime/countdowntime.js"></script>
+    <script src="${commonResourcePath}/dutyFarm/login/js/main.js"></script>
+
+<%--
 <c:set var="commonResourcePathHtml" value="${fn:escapeXml(commonResourcePath)}"/>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
@@ -14,10 +29,8 @@
 	  	<script src="${fn:escapeXml(contextPath)}/wro/addons_responsive.js"></script>
 	</c:when>
 	<c:otherwise>
-		<%-- jquery --%>
 		<script src="${commonResourcePathHtml}/js/jquery-3.2.1.min.js"></script>
 
-		<%-- plugins --%>
 		<script src="${commonResourcePathHtml}/js/enquire.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/Imager.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/purify.min.js"></script>
@@ -36,7 +49,6 @@
 		<script src="${commonResourcePathHtml}/js/jquery.waitforimages.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.slideviewer.custom.1.2.js"></script>
 
-		<%-- Custom ACC JS --%>
 
 		<script src="${commonResourcePathHtml}/js/acc.address.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.autocomplete.js"></script>
@@ -85,18 +97,16 @@
 
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
 
-		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>
 		</c:forEach>
 
-		<%-- AddOn JavaScript files --%>
 		<c:forEach items="${addOnJavaScriptPaths}" var="addOnJavaScript">
 		    <script src="${fn:escapeXml(addOnJavaScript)}"></script>
 		</c:forEach>
 
 	</c:otherwise>
 </c:choose>
-
+--%>
 
 <cms:previewJS cmsPageRequestContextData="${cmsPageRequestContextData}" />

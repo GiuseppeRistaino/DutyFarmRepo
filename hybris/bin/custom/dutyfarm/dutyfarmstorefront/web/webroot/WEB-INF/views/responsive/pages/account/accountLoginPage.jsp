@@ -1,4 +1,4 @@
-<%--
+
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/responsive/template"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
@@ -17,8 +17,8 @@
 		</div>
 	</div>
 </template:page>
---%>
 
+<%--
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -31,3 +31,4 @@
 
 </body>
 </html>
+--%>

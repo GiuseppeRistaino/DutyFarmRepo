@@ -4,10 +4,14 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
                           ;;DutyFarmHomepageTemplate;DutyFarm Homepage Template;dutyFarm/homepage;ContentPage
                           ;;RegisterPageTemplate;DutyFarm Register Template; pages/account/accountRegisterPage;ContentPage
+                          ;;DutyFarmAboutTemplate;DutyFarm About Template; dutyFarm/about;ContentPage
+                          ;;DutyFarmFAQTemplate;DutyFarm FAQ Template; dutyFarm/FAQ;ContentPage
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage
                          ;;DutyFarmHomepageContentPage;DutyFarm Homepage Content Page;DutyFarmHomepageTemplate;dutyFarmHomepageCMSPage;;;true
                          ;;register;Register Page;RegisterPageTemplate;register;;;false
+                         ;;DutyFarmAboutContentPage;DutyFarm About Content Page;DutyFarmAboutTemplate;dutyFarmAboutCMSPage;;;false
+                         ;;DutyFarmFAQContentPage;DutyFarm FAQ Content Page;DutyFarmFAQTemplate;dutyFarmFAQCMSPage;;;false
 
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];validComponentTypes(code);compTypeGroup(code)
                              ;SiteLogo;;;logo
@@ -18,6 +22,7 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
                              ;SectionA;;;wide
                              ;SectionB;;;wide
                              ;SectionC;;;wide
+                             ;Carousel;;;wide
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
                          ;;SiteLogoSlot;Default Site Logo Slot;true
@@ -28,6 +33,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
                          ;;SectionASlot;SectionA Slot;true
                          ;;SectionBSlot;SectionB Slot;true
                          ;;SectionCSlot;SectionC Slot;true
+                         ;;CarouselSlot;Carousel Slot;true
 
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
@@ -39,6 +45,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
                                     ;;SectionA-Homepage;SectionA;;SectionASlot;true
                                     ;;SectionB-Homepage;SectionB;;SectionBSlot;true
                                     ;;SectionC-Homepage;SectionC;;SectionCSlot;true
+                                    ;;Carousel-Homepage;Carousel;;CarouselSlot;true
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;target(code)[default='sameWindow'];;
                               ;;HomeLink;Home Link;/homepage;;;;

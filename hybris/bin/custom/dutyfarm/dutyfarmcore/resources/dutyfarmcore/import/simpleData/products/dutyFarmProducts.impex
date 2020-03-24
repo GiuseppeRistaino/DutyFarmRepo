@@ -1,9 +1,19 @@
-$dutyFarmCatalog = dutyFarmCatalog
+$dutyFarmCatalog = dutyFarmProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
 $approved=approvalstatus(code)[default='check']
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/sampledata/productCatalogs/dutyFarmCatalog/images
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
-INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
-;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso
+INSERT_UPDATE Media;code[unique=true];realfilename;URL;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
+                   ;category-farm.jpg;category-farm.jpg;/farm;$siteResource/category-farm.jpg;;
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+             ;category-farm-container.jpg;category-farm.jpg;
+
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland; $galleryImages;$prices
+;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso;category-farm-container.jpg;500 EUR
 ;A02;;;Tree;TreeVariantProduct;;1020334402;Abete;Abete;terreno acido
 ;A03;;;Tree;TreeVariantProduct;;1020334403;Bonsai;Bonsai;sabbia di fiume
 

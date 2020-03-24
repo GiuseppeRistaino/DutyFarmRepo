@@ -26,7 +26,7 @@
 <template:errorSpanField path="${path}">
     <ycommerce:testId code="LoginPage_Item_${idKey}">
         <label class="control-label ${fn:escapeXml(labelCSS)}" for="${fn:escapeXml(idKey)}">
-            <spring:theme code="${labelKey}"/>
+            <span class="focus-input100" data-placeholder="<spring:theme code="${labelKey}"/>"></span>
             <c:if test="${mandatory != null && mandatory == true}">
 					<span class="mandatory">
 						<spring:theme code="login.required" var="loginRequiredText"/>
@@ -36,14 +36,14 @@
 						<form:errors path="${path}"/>
 					</span>
         </label>
-        <div class="control">
-            <form:select id="${idKey}" path="${path}" cssClass="${fn:escapeXml(selectCSSClass)}" tabindex="${tabindex}" disabled="${disabled}">
+        <div class="control input100-selectbox">
+            <form:select class="input100-selectbox-register" id="${idKey}" path="${path}" tabindex="${tabindex}" disabled="${disabled}">
                 <c:if test="${skipBlank == null || skipBlank == false}">
                     <option value="" disabled="disabled" ${empty selectedValue ? 'selected="selected"' : ''}>
                         <spring:theme code='${skipBlankMessageKey}'/>
                     </option>
                 </c:if>
-                <form:options items="${items}" itemValue="${not empty itemValue ? itemValue :'code'}"
+                <form:options class="input100-options-register" items="${items}" itemValue="${not empty itemValue ? itemValue :'code'}"
                               itemLabel="${not empty itemLabel ? itemLabel :'name'}"/>
             </form:select>
         </div>

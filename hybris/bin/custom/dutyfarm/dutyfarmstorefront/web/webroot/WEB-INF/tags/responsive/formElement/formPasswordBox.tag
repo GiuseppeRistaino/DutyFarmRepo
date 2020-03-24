@@ -18,6 +18,16 @@
 
 <template:errorSpanField path="${path}" errorPath="${errorPath}">
 	<ycommerce:testId code="LoginPage_Item_${idKey}">
+        <spring:message code="${labelKey}" var="labelPassword"/>
+		<form:password class="input100" name="pass" placeholder="${labelPassword}"
+		    id="${idKey}" path="${path}" autocomplete="off"/>
+	    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+	</ycommerce:testId>
+</template:errorSpanField>
+
+<%-- OLD VERSION
+<template:errorSpanField path="${path}" errorPath="${errorPath}">
+	<ycommerce:testId code="LoginPage_Item_${idKey}">
 		<label class="control-label ${fn:escapeXml(labelCSS)}" for="${fn:escapeXml(idKey)}">
 			<spring:theme code="${labelKey}" />
 			<c:if test="${mandatory != null && mandatory == false}">
@@ -27,3 +37,4 @@
 		<form:password cssClass="${fn:escapeXml(inputCSS)}" id="${idKey}" path="${path}" autocomplete="off"/>
 	</ycommerce:testId>
 </template:errorSpanField>
+--%>

@@ -1,76 +1,125 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
-#
-# Import the CMS content for the site
-#
 $contentCatalog=dutyFarmContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
-# Import config properties into impex macros
-UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
-$jarResourceCms=$config-jarResourceCmsValue
-
-# Create PageTemplates
-# These define the layout for pages
-# "FrontendTemplateName" is used to define the JSP that should be used to render the page for pages with multiple possible layouts.
-# "RestrictedPageTypes" is used to restrict templates to page types
-
 INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
-;;HomePageTemplate;HomePage Template;dutyFarm/homepage;;
+                          ;;DutyFarmHomepageTemplate;DutyFarm Homepage Template;dutyFarm/homepage;ContentPage
+                          ;;RegisterPageTemplate;DutyFarm Register Template; dutyFarm/register;ContentPage
+                          ;;DutyFarmAboutTemplate;DutyFarm About Template; dutyFarm/about;ContentPage
+                          ;;DutyFarmFAQTemplate;DutyFarm FAQ Template; dutyFarm/FAQ;ContentPage
+                          ;;DutyFarmLoginTemplate;DutyFarm Login Page Template;dutyFarm/login;ContentPage
+                          ;;DutyFarmProductGridPageTemplate;Product Grid Page Template;dutyFarm/productGridPage;CategoryPage
+                          ;;DutyFarmShopTemplate;DutyFarm Shop Page Template;dutyFarm/shop;ContentPage
 
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage
+                         ;;DutyFarmHomepageContentPage;DutyFarm Homepage Content Page;DutyFarmHomepageTemplate;dutyFarmHomepageCMSPage;;;true
+                         ;;register;Register Page;RegisterPageTemplate;register;;;false
+                         ;;DutyFarmAboutContentPage;DutyFarm About Content Page;DutyFarmAboutTemplate;dutyFarmAboutCMSPage;;;false
+                         ;;DutyFarmFAQContentPage;DutyFarm FAQ Content Page;DutyFarmFAQTemplate;dutyFarmFAQCMSPage;;;false
+                         ;;DutyFarmLoginContentPage;DutyFarm Login Content Page;DutyFarmLoginTemplate;login;;;false
+                         ;;DutyFarmShopContentPage;DutyFarm Shop Content Page;DutyFarmShopTemplate;shop;;;false
 
-# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
-# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
-#UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
-#;;ProductDetailsPageTemplate;$jarResourceCms/structure-view/structure_productDetails2PageTemplate.vm
+# Category Pages
+INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+                          ;;DutyFarmProductGridCategoryPage;Product Grid;DutyFarmProductGridPageTemplate;false;
 
-# Create ContentSlotNames
-# Each PageTemplate has a number of ContentSlotNames, with a list of valid components for the slot.
-# There are a standard set of slots and a number of specific slots for each template.
-# Standard slots are SiteLogo, HeaderLinks, MiniCart and NavigationBar (that all appear in the Header), and the Footer. 
+#Homepage
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+                             ;CarouselA;;;wide
+                             ;CarouselB;;;wide
 
-#CONTENT SLOT NAME
-INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='HomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
-;TopHeader;;;wide
-;SiteLogo;;;logo
-;SearchBox;;;searchbox
-;MiniCart;;;minicart
-;NavigationBar;;;navigation
-;Footer;;;footer
+#Login
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmLoginTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
 
+#Register
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisterPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
 
-# Create Content Slots
+#Shop Page
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmShopTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+
+#Product Grid
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmProductGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
+                             ;ProductLeftRefinements;;;narrow
+                             ;ProductGridSlot;;;wide
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
-;;SiteLogoSlot;Site Logo Slot;true
-;;TopHeaderSlot;Top Header; true
-;;SearchBoxSlot; Search Box ;true
-;;MiniCartSlot; MiniCart Slot;true
-;;NavigationBarSlot; Navigation Bar Slot;true
-;;FooterSlot; FooterSlot; true
+                         ;;SiteLogoSlot;Default Site Logo Slot;true
+                         ;;NavigationBarSlot;Navigation Bar;true
+                         ;;FooterSlot;Footer;true
+                         ;;TopHeaderSlot;Top Header;true
+                         ;;MiniCartSlot;MiniCart Slot;true
+                         ;;CarouselASlot;Carousel A Slot;true
+                         ;;CarouselBSlot;Carousel B Slot;true
+                         ;;ProductLeftRefinementsSlot;Refinements Slot;true
+                         ;;ProductGridSlot;Product Grid Slot;true
+
+#Homepage
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;SiteLogo-Homepage;SiteLogo;;SiteLogoSlot;true
+                                    ;;TopHeaderSlot-Homepage;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;NavigationBar-Homepage;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Homepage;MiniCart;;MiniCartSlot;true
+                                    ;;Footer-Homepage;Footer;;FooterSlot;true
+                                    ;;CarouselA-Homepage;CarouselA;;CarouselASlot;true
+                                    ;;CarouselB-Homepage;CarouselB;;CarouselBSlot;true
+
+#Login
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmLoginTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;TopHeaderSlot-Login;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;Footer-Login;Footer;;FooterSlot;true
+                                    ;;SiteLogo-Login;SiteLogo;;SiteLogoSlot;true
+                                    ;;NavigationBar-Login;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Login;MiniCart;;MiniCartSlot;true
+
+#Register
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;TopHeaderSlot-Register;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;Footer-Register;Footer;;FooterSlot;true
+                                    ;;SiteLogo-Register;SiteLogo;;SiteLogoSlot;true
+                                    ;;NavigationBar-Register;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Register;MiniCart;;MiniCartSlot;true
+
+#Shop
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmShopTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;TopHeaderSlot-Shop;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;Footer-Shop;Footer;;FooterSlot;true
+                                    ;;SiteLogo-Shop;SiteLogo;;SiteLogoSlot;true
+                                    ;;NavigationBar-Shop;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Shop;MiniCart;;MiniCartSlot;true
+
+#Product Grid
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;TopHeaderSlot-ProductGrid;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;Footer-ProductGrid;Footer;;FooterSlot;true
+                                    ;;SiteLogo-ProductGrid;SiteLogo;;SiteLogoSlot;true
+                                    ;;NavigationBar-ProductGrid;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-ProductGrid;MiniCart;;MiniCartSlot;true
+                                    ;;ProductLeftRefinements-ProductGrid;ProductLeftRefinements;;ProductLeftRefinementsSlot;true
+                                    ;;ProductGridSlot-ProductGrid;ProductGridSlot;;ProductGridSlot;true
 
 
-# Bind Content Slots to Page Templates
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='HomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;SiteLogo-HomePage;SiteLogo;;SiteLogoSlot;true
-;;TopHeader-HomePage;TopHeader;;TopHeaderSlot;true
-;;SearchBox-HomePage;SearchBox;;SearchBoxSlot;true
-;;MiniCart-HomePage;MiniCart;;MiniCartSlot;true
-;;NavigationBar-HomePage;NavigationBar;;NavigationBarSlot;true
-;;Footer-HomePage;Footer;;FooterSlot;true
-
-
-
-# Create Content Pages
-
-# Site-wide Homepage
-INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
-                         ;;DutyHomepageContentPage;DutyHomepageContentPage;HomePageTemplate;DutyFarmHomepage
 

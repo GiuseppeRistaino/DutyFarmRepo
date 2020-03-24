@@ -18,6 +18,13 @@
 
     <header:header hideHeaderLinks="${hideHeaderLinks}" />
 
+    <div class="bodyWrapper">
+        <jsp:doBody />
+    </div>
+
+    <div class="footerWrapper">
+        <footer:footer />
+    </div>
 <%--
 	<jsp:attribute name="pageCss">
 		<jsp:invoke fragment="pageCss" />

@@ -1,4 +1,4 @@
-$productCatalog=dutyFarmCatalog
+$productCatalog=dutyFarmProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
 $approved=approvalstatus(code)[default='check']
