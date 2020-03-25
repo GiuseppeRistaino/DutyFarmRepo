@@ -20,38 +20,74 @@ $siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfar
 $prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
 INSERT_UPDATE Media;code[unique=true];realfilename;URL;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
-                   ;category-farm.jpg;category-farm.jpg;/farm;$siteResource/category-farm.jpg;;
+                   ;tree-A01.jpg;tree-A01.jpg;/A01;$siteResource/tree-A01.jpg;;
+                   ;tree-A02.jpg;tree-A02.jpg;/A02;$siteResource/tree-A02.jpg;;
+                   ;tree-A03.jpeg;tree-A03.jpeg;/A03;$siteResource/tree-A03.jpeg;;
+                   ;flower-A04.jpg;flower-A04.jpg;/A04;$siteResource/flower-A04.jpg;;
+                   ;flower-A05.jpg;flower-A05.jpg;/A05;$siteResource/flower-A05.jpg;;
+                   ;flower-A06.jpg;flower-A06.jpg;/A06;$siteResource/flower-A06.jpg;;
+                    ;vegetable-A07.jpg;vegetable-A07.jpg;/A07;$siteResource/vegetable-A07.jpg;;
+                    ;vegetable-A08.jpg;vegetable-A08.jpg;/A08;$siteResource/vegetable-A08.jpg;;
+                    ;vegetable-A09.jpg;vegetable-A09.jpg;/A09;$siteResource/vegetable-A09.jpg;;
+                    ;seed-A10.jpg;seed-A10.jpg;/A10;$siteResource/seed-A10.jpg;;
+                    ;seed-A11.png;seed-A11.png;/A11;$siteResource/seed-A11.png;;
+                    ;seed-A12.jpg;seed-A12.jpg;/A12;$siteResource/seed-A12.jpg;;
+                    ;fertilizer-A13.png;fertilizer-A13.png;/A13;$siteResource/fertilizer-A13.png;;
+                    ;fertilizer-A14.jpg;fertilizer-A14.jpg;/A14;$siteResource/fertilizer-A14.jpg;;
+                    ;fertilizer-A15.jpg;fertilizer-A15.jpg;/A15;$siteResource/fertilizer-A15.jpg;;
+                    ;flowerPot-A16.jpg;flowerPot-A16.jpg;/A16;$siteResource/flowerPot-A16.jpg;;
+                    ;flowerPot-A17.jpg;flowerPot-A17.jpg;/A17;$siteResource/flowerPot-A17.jpg;;
+                    ;flowerPot-A18.jpg;flowerPot-A18.jpg;/A18;$siteResource/flowerPot-A18.jpg;;
+
+
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
-                            ;category-farm-container.jpg;category-farm.jpg;
+                            ;tree-A01-container;tree-A01.jpg;
+                            ;tree-A02-container;tree-A02.jpg;
+                            ;tree-A03-container;tree-A03.jpeg;
+                            ;flower-A04-container;flower-A04.jpg;
+                            ;flower-A05-container;flower-A05.jpg;
+                            ;flower-A06-container;flower-A06.jpg;
+                            ;vegetable-A07-container;vegetable-A07.jpg;
+                            ;vegetable-A08-container;vegetable-A08.jpg;
+                            ;vegetable-A09-container;vegetable-A09.jpg;
+                            ;seed-A10-container;seed-A10.jpg;
+                            ;seed-A11-container;seed-A11.png;
+                            ;seed-A12-container;seed-A12.jpg;
+                            ;fertilizer-A13-container;fertilizer-A13.png;
+                            ;fertilizer-A14-container;fertilizer-A14.jpg;
+                            ;fertilizer-A15-container;fertilizer-A15.jpg;
+                            ;flowerPot-A16-container;flowerPot-A16.jpg;
+                            ;flowerPot-A17-container;flowerPot-A17.jpg;
+                            ;flowerPot-A18-container;flowerPot-A18.jpg;
 
 
-INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland; $galleryImages;$prices
-                         ;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso;category-farm-container.jpg;500 EUR
-                         ;A02;;;Tree;TreeVariantProduct;;1020334402;Abete;Abete;terreno acido
-                         ;A03;;;Tree;TreeVariantProduct;;1020334403;Bonsai;Bonsai;sabbia di fiume
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; $galleryImages
+                         ;A01;;tree-A01-container
+                         ;A02;;tree-A02-container
+                         ;A03;;tree-A03-container
 
-INSERT_UPDATE FlowerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
-                           ;A04;;;Flower;FlowerVariantProduct;;1020334404;Rosa di Damasco;Rosa di Damasco; terreno argilloso
-                           ;A05;;;Flower;FlowerVariantProduct;;1020334405;Margherita; Margherita;terreno sabbioso
-                           ;A06;;;Flower;FlowerVariantProduct;;1020334406;Orchidea Cimbidio; Orchidea Cimbidio;terreno acido
+INSERT_UPDATE FlowerProduct; code [unique=true]; $catalogVersion; $galleryImages
+                           ;A04;;flower-A04-container
+                           ;A05;;flower-A05-container
+                           ;A06;;flower-A06-container
 
-INSERT_UPDATE VegetableProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland
-                              ;A07;;;Vegetable;VegetableVariantProduct;;1020334407;Broccolo; Broccolo;terreno fertile
-                              ;A08;;;Vegetable;VegetableVariantProduct;;1020334408;Pomodoro; Pomodoro;terreno fertile
-                              ;A09;;;Vegetable;VegetableVariantProduct;;1020334409;Patata;Patata; terreno fertile
+INSERT_UPDATE VegetableProduct; code [unique=true]; $catalogVersion; $galleryImages
+                              ;A07;;vegetable-A07-container
+                              ;A08;;vegetable-A08-container
+                              ;A09;;vegetable-A09-container
 
-INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
-                         ;A10;;;Farmland;SeedVariantProduct;;1020334410;Semi di Pomodoro; Semi di Pomodoro
-                         ;A11;;;Farmland;SeedVariantProduct;;1020334411;Semi di Girasole;Semi di Girasole
-                         ;A12;;;Farmland;SeedVariantProduct;;1020334412;Semi di Tulipano; Semi di Tulipano
+INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; $galleryImages
+                         ;A10;;seed-A10-container
+                         ;A11;;seed-A11-container
+                         ;A12;;seed-A12-container
 
-INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
-                               ;A13;;;Farmland;FertilizerVariantProduct;;1020334413;Aptus All in one;Aptus All in one
-                               ;A14;;;Farmland;FertilizerVariantProduct;;1020334414;Xtreme Gardening;Xtreme Gardening
-                               ;A15;;;Farmland;FertilizerVariantProduct;;1020334415;Vialca Pomice Fine;Vialca Pomice Fine
+INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; $galleryImages
+                               ;A13;;fertilizer-A13-container
+                               ;A14;;fertilizer-A14-container
+                               ;A15;;fertilizer-A15-container
 
-INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]
-                              ;A16;;;Decoration;FlowerPotVariantProduct;;1020334416;Elho basics; Elho basics
-                              ;A17;;;Decoration;FlowerPotVariantProduct;;1020334417;Bama; Bama
-                              ;A18;;;Decoration;FlowerPotVariantProduct;;1020334418;Emsa;Emsa
+INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; $galleryImages
+                              ;A16;;flowerPot-A16-container
+                              ;A17;;flowerPot-A17-container
+                              ;A18;;flowerPot-A18-container
