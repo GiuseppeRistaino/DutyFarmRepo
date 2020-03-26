@@ -9,9 +9,8 @@
         <div class="category-container">
             <c:forEach var="category" items="${categories}">
                 <div class="category-cell">
-                    <a href="/${fn:toLowerCase(message)}">
                     <img src="${category.picture.url}"/></a>
-                    <a class="category-link" href="/${fn:toLowerCase(message)}">${category.code}</a>
+                    <a class="category-link" href="/${fn:toLowerCase(category.code)}">${category.code}</a>
                 </div>
             </c:forEach>
         </div>

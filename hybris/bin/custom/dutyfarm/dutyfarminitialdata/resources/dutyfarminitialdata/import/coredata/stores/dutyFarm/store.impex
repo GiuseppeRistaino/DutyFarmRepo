@@ -14,10 +14,10 @@
 
 $productCatalog=dutyFarmProductCatalog
 $classificationCatalog=dutyFarmClassification
-$currencies=JPY,USD
+$currencies=EUR
 $net=false
 $storeUid=dutyFarm
-$defaultCurrency=USD
+$defaultCurrency=EUR
 $languages=ja,en,de,zh
 $defaultLanguage=en
 $unitedKingdom=GB,GG,IM,JE
@@ -37,8 +37,8 @@ INSERT_UPDATE PromotionGroup;Identifier[unique=true];
 ;dutyfarmPromoGrp;
 
 # Base Store
-INSERT_UPDATE DutyFarm;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;paymentProvider;checkoutFlowGroup;name;city;address
-;$storeUid;$productCatalog,$classificationCatalog;$currencies;$net;jp-taxes;km;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$paymentProvider;$checkoutFlowGroup;Duty Farm;Napoli;via Giacomini
+INSERT_UPDATE DutyFarm;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;paymentProvider;name;city;address
+;$storeUid;$productCatalog,$classificationCatalog;$currencies;$net;jp-taxes;km;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$paymentProvider;Duty Farm;Napoli;via Giacomini
 
 INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
                                        ;dutyFarm;premium-net

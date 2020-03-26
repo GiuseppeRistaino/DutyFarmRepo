@@ -7,13 +7,13 @@ $siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfar
 $prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
 INSERT_UPDATE Media;code[unique=true];realfilename;URL;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
-                   ;category-farm.jpg;category-farm.jpg;/farm;$siteResource/category-farm.jpg;;
+                   ;category-flower.jpg;category-flower.jpg;/farm;$siteResource/category-flower.jpg;;
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
-             ;category-farm-container.jpg;category-farm.jpg;
+             ;category-flower-container;category-flower.jpg;
 
-INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland; $galleryImages;$prices
-;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso;category-farm-container.jpg;500 EUR
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; unit(code)[default=pieces]; supercategories (code, $catalogVersion); varianttype(code); $approved; ean; name[lang=it];name[lang=en]; farmland; $galleryImages
+;A01;;;Tree;TreeVariantProduct;;1020334401;Acero rosso;Acero rosso;terreno paludoso;category-flower-container
 ;A02;;;Tree;TreeVariantProduct;;1020334402;Abete;Abete;terreno acido
 ;A03;;;Tree;TreeVariantProduct;;1020334403;Bonsai;Bonsai;sabbia di fiume
 
@@ -41,3 +41,6 @@ INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; unit(code)[
 ;A16;;;Decoration;FlowerPotVariantProduct;;1020334416;Elho basics; Elho basics
 ;A17;;;Decoration;FlowerPotVariantProduct;;1020334417;Bama; Bama
 ;A18;;;Decoration;FlowerPotVariantProduct;;1020334418;Emsa;Emsa
+
+INSERT_UPDATE PriceRow;product(code, $catalogVersion)[unique=true];price[translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.PriceTranslator];currency(isocode)[default=EUR][unique=true];$catalogVersion
+                      ;A01;50;EUR;

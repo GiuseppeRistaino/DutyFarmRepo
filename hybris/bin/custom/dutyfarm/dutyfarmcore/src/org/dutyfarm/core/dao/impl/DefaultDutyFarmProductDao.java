@@ -17,32 +17,9 @@ public class DefaultDutyFarmProductDao  extends DefaultGenericDao<ProductModel> 
 
     private static final Logger LOG = Logger.getLogger(DefaultDutyFarmProductDao.class);
 
-    private static final String FIND_ALL_PRODUCTS = "SELECT {p.pk}\n" +
-            "FROM {\n" +
-            "\tProduct AS p\n" +
-            "\tJOIN CategoryProductRelation AS cpr\n" +
-            "    ON {p.pk} = {cpr.target}\n" +
-            "    JOIN Category AS c\n" +
-            "    ON {c.pk} = {cpr.source}\n" +
-            "}";
-    private static final String FIND_ALL_PRODUCTS_BY_CATEGORY = "SELECT {p.pk}\n" +
-            "FROM {\n" +
-            "\tProduct AS p\n" +
-            "\tJOIN CategoryProductRelation AS cpr\n" +
-            "    ON {p.pk} = {cpr.target}\n" +
-            "    JOIN Category AS c\n" +
-            "    ON {c.pk} = {cpr.source}\n" +
-            "}\n" +
-            "WHERE {c.code} LIKE ?category";
-    private static final String FIND_ALL_RPDOUCTS_BY_NAME = "SELECT {p.pk}\n" +
-            "FROM {\n" +
-            "\tProduct AS p\n" +
-            "\tJOIN CategoryProductRelation AS cpr\n" +
-            "    ON {p.pk} = {cpr.target}\n" +
-            "    JOIN Category AS c\n" +
-            "    ON {c.pk} = {cpr.source}\n" +
-            "}\n" +
-            "WHERE {p.name} LIKE %?name%";
+    private static final String FIND_ALL_PRODUCTS = "SELECT {p.pk} FROM {Product AS p JOIN CategoryProductRelation AS cpr ON {p.pk} = {cpr.target} JOIN Category AS c ON {c.pk} = {cpr.source} }";
+    private static final String FIND_ALL_PRODUCTS_BY_CATEGORY = "SELECT {p.pk} FROM { Product AS p JOIN CategoryProductRelation AS cpr ON {p.pk} = {cpr.target} JOIN Category AS c ON {c.pk} = {cpr.source} } WHERE {c.code} LIKE ?category";
+    private static final String FIND_ALL_RPDOUCTS_BY_NAME = "SELECT {p.pk} FROM { Product AS p JOIN CategoryProductRelation AS cpr ON {p.pk} = {cpr.target} JOIN Category AS c ON {c.pk} = {cpr.source} } WHERE {p.name} LIKE %?name%";
 
     public DefaultDutyFarmProductDao(String typecode) {
         super(typecode);

@@ -49,7 +49,6 @@ public class DutyFarmProductPopulator implements Populator<ProductModel, Product
             }
             productPricePopulator.populate(source, target);
             target.setImages(images);
-            //target.setPrice(source.getPric);
         }
 
     }

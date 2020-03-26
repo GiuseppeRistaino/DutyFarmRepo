@@ -93,6 +93,7 @@ public interface ControllerConstants
 				String DutyFarmSeedVariantPage = "pages/dutyFarm/seedVariants";
 				String DutyFarmFlowerPotVariantPage = "pages/dutyFarm/flowerPotVariants";
 				String DutyFarmShopPage = "pages/dutyFarm/shop";
+				String DutyFarmFarmPage = "pages/dutyFarm/products";
 			}
 
 			interface Account // NOSONAR

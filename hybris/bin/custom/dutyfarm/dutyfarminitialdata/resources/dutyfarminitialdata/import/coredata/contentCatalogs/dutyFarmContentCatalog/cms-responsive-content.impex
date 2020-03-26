@@ -9,6 +9,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
                           ;;DutyFarmLoginTemplate;DutyFarm Login Page Template;dutyFarm/login;ContentPage
                           ;;DutyFarmProductGridPageTemplate;Product Grid Page Template;dutyFarm/productGridPage;CategoryPage
                           ;;DutyFarmShopTemplate;DutyFarm Shop Page Template;dutyFarm/shop;ContentPage
+                          ;;DutyFarmProductsTemplate;DutyFarm Products Template;dutyFarm/products;ContentPage
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage
                          ;;DutyFarmHomepageContentPage;DutyFarm Homepage Content Page;DutyFarmHomepageTemplate;dutyFarmHomepageCMSPage;;;true
@@ -17,6 +18,7 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
                          ;;DutyFarmFAQContentPage;DutyFarm FAQ Content Page;DutyFarmFAQTemplate;dutyFarmFAQCMSPage;;;false
                          ;;DutyFarmLoginContentPage;DutyFarm Login Content Page;DutyFarmLoginTemplate;login;;;false
                          ;;DutyFarmShopContentPage;DutyFarm Shop Content Page;DutyFarmShopTemplate;shop;;;false
+                         ;;DutyFarmProductsContentPage;DutyFarm Products Content Page;DutyFarmProductsTemplate;products;;;false
 
 # Category Pages
 INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
@@ -58,6 +60,16 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 
 #Product Grid
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmProductGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
+                             ;ProductLeftRefinements;;;narrow
+                             ;ProductGridSlot;;;wide
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+
+#Product Grid
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmProductsTemplate'];validComponentTypes(code);compTypeGroup(code)
                              ;SiteLogo;;;logo
                              ;MiniCart;;;minicart
                              ;NavigationBar;;;navigation
@@ -120,6 +132,16 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
                                     ;;MiniCart-ProductGrid;MiniCart;;MiniCartSlot;true
                                     ;;ProductLeftRefinements-ProductGrid;ProductLeftRefinements;;ProductLeftRefinementsSlot;true
                                     ;;ProductGridSlot-ProductGrid;ProductGridSlot;;ProductGridSlot;true
+
+#Product Grid
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmProductsTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;TopHeaderSlot-Products;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;Footer-Products;Footer;;FooterSlot;true
+                                    ;;SiteLogo-Products;SiteLogo;;SiteLogoSlot;true
+                                    ;;NavigationBar-Products;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Products;MiniCart;;MiniCartSlot;true
+                                    ;;ProductLeftRefinements-Products;ProductLeftRefinements;;ProductLeftRefinementsSlot;true
+                                    ;;ProductGridSlot-Products;ProductGridSlot;;ProductGridSlot;true
 
 
 

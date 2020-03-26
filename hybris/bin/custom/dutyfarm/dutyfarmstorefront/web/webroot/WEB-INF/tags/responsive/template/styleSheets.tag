@@ -20,6 +20,9 @@
 	<link rel="stylesheet" type="text/css" href="${commonResourcePath}/dutyFarm/login/css/main.css">
 <%-- END LOGIN PAGE --%>
 
+<%-- PRODUCTS PAGE --%>
+<%-- END PRODUCTS PAGE --%>
+
 <%-- OLD
 <link rel="stylesheet" type="text/css" href="${commonResourcePath}/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${commonResourcePath}/bootstrap/css/bootstrap.min.css" />

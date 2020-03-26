@@ -21,6 +21,9 @@
     <script src="${commonResourcePath}/dutyFarm/login/vendor/countdowntime/countdowntime.js"></script>
     <script src="${commonResourcePath}/dutyFarm/login/js/main.js"></script>
 
+    <%-- PRODUCTS PAGE %-->
+
+
 <%--
 <c:set var="commonResourcePathHtml" value="${fn:escapeXml(commonResourcePath)}"/>
 <c:choose>

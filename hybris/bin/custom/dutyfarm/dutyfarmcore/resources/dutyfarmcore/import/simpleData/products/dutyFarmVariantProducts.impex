@@ -2,12 +2,11 @@ $productCatalog=dutyFarmProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
 $approved=approvalstatus(code)[default='check']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
-
-
-INSERT_UPDATE TreeVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name[lang=it];name[lang=en];weight;height;diameterStem;origin;scientificName
-                                ;A01A01;A01;1120334401;;;;;Acero rosso;Acero rosso;20 kg;1.30 m;0.05 m; Austria;Acer rubrum
-                                ;A01A02;A01;1120334402;;;;;Acero rosso;Acero rosso;10 kg;1.10 m;0.02 m;Italia;Acer rubrum
+INSERT_UPDATE TreeVariantProduct;code[unique=true];$baseProduct;ean;unit(code)[default=pieces];supercategories(code,$catalogVersion);$approved;$catalogVersion;name[lang=it];name[lang=en];weight;height;diameterStem;origin;scientificName;$prices
+                                ;A01A01;A01;1120334401;;;;;Acero rosso;Acero rosso;20 kg;1.30 m;0.05 m; Austria;Acer rubrum;500 EUR
+                                ;A01A02;A01;1120334402;;;;;Acero rosso;Acero rosso;10 kg;1.10 m;0.02 m;Italia;Acer rubrum; 100 EUR
                                 ;A02A01;A02;1220334401;;;;;Abete;Abete;15 kg;1 m;0.02 m;Italia;Abies
                                 ;A02A02;A02;1220334402;;;;;Abete;Abete;10 kg;0.8 m;0.02 m;Danimarca;Abies
                                 ;A03A01;A03;1320334401;;;;;Bonsai;Bonsai;5 kg;0.5 m;0.5 m;Irlanda;Acer palmatum
