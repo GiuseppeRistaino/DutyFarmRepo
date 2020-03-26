@@ -11,12 +11,34 @@
 # ImpEx for Importing Prices
 
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
 
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$dutyFarmCatalog = dutyFarmProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
+
 $prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
 # Set product approval status to Approved only for those products that have prices.
 $approved=approvalstatus(code)[default='approved']
 
 UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;Europe1PriceFactory_PTG(code)
+
+INSERT_UPDATE PriceRow;product(code, $catalogVersion)[unique=true];price[translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.PriceTranslator];currency(isocode)[default=EUR][unique=true];$catalogVersion
+                      ;A01;20;EUR;
+                      ;A02;15;EUR;
+                      ;A03;10;EUR;
+                      ;A04;5;EUR;
+                      ;A05;5;EUR;
+                      ;A06;5;EUR;
+                      ;A07;10;EUR;
+                      ;A08;20;EUR;
+                      ;A09;8;EUR;
+                      ;A10;5;EUR;
+                      ;A11;8;EUR;
+                      ;A12;5;EUR;
+                      ;A13;24;EUR;
+                      ;A14;21;EUR;
+                      ;A15;9;EUR;
+                      ;A16;30;EUR;
+                      ;A17;20;EUR;
+                      ;A18;50;EUR;
+
