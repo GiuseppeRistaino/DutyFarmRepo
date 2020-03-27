@@ -11,7 +11,8 @@
 <div class="cart-container">
     <div class="cart-icon">
 		<%--<i class="fas fa-shopping-cart"></i>--%>
-		<img class="icon-minicart" src="${commonResourcePath}/dutyFarm/images/shopping-cart-solid.svg"/>
+		<%--<img class="icon-minicart" src="${commonResourcePath}/dutyFarm/images/shopping-cart-solid.svg"/>--%>
+		<img class="icon-minicart" src="${commonResourcePath}/dutyFarm/images/icons8-carrello-della-spesa-64.png"/>
 	</div>
 	<div class="cart-price">
 		<c:if test="${totalDisplay == 'TOTAL'}">

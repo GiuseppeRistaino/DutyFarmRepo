@@ -65,7 +65,7 @@ INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&c
 #CMS Navigation Bar  Bar Component -----------------------------------------------------------------------------------------------------------------------------------
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;target(code)[default='sameWindow'];linkName[lang='en']
                               ;;DutyFarmHomeLink;DutyFarm Home Link;/;;Home
-                              ;;DutyFarmShopLink;DutyFarm Shop Link;dutyFarm/shop;;Shop
+                              ;;DutyFarmShopLink;DutyFarm Shop Link;/shop?category=Farm;;Shop
                               ;;DutyFarmFAQLink;DutyFarm FAQ Link;/faq;;Servizio clienti
                               ;;DutyFarmLoginLink;DutyFarm Login Link;/login;;Login
                               ;;DutyFarmLogoutLink;DutyFarm Logout Link;/logout;;Logout

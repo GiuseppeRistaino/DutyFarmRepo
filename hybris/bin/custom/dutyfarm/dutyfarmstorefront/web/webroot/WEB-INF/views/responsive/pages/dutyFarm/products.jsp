@@ -12,8 +12,18 @@
 	<link rel="stylesheet" type="text/css" href="${commonResourcePath}/dutyFarm/products/css/animate.css">
 	<link rel="stylesheet" type="text/css" href="${commonResourcePath}/dutyFarm/products/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${commonResourcePath}/dutyFarm/products/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="${commonResourcePath}/dutyFarm/products/css/pagination.css">
     </head>
     <body>
+
+        <div class="category-container">
+            <c:forEach var="category" items="${categories}">
+                <div class="category-cell">
+                    <img src="${category.thumbnail.url}"/></a>
+                    <a class="category-link" href="/${fn:toLowerCase(category.code)}">${category.code}</a>
+                </div>
+            </c:forEach>
+        </div>
 
         <div class="container-products">
                <div class="row-products">
@@ -53,66 +63,23 @@
                     </c:forEach>
                </div>
         </div>
-        <%--
-        <div class="container-products">
-            		<div class="row-products">
-            			<c:forEach var="product" items="${products}">
-                            <div class="col-md-6-products col-lg-3-products ftco-animate-products">
-                                <div class="cell-product">
-                                    <c:forEach var="image" items="${product.getImages()}" varStatus="loopCount">
-                                        <c:if test="${loopCount.count eq 1}">
-                                            <a href="#" class="img-prod"><img class="img-fluid" src="${image.url}" alt="Colorlib Template">
-
-                                            </a>
-                                        </c:if>
-                                    </c:forEach>
-                                    <div class="text py-3 pb-4 px-3 text-center">
-                                        <h3><a href="#">${product.name}</a></h3>
-                                        <div class="d-flex">
-                                            <div class="pricing">
-                                                <p class="price"><span>${product.price.value} ${" "} ${product.price.currencyIso}</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="bottom-area d-flex px-3">
-                                            <div class="m-auto d-flex">
-                                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                    <span><i class="ion-ios-menu"></i></span>
-                                                </a>
-                                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                    <span><i class="ion-ios-cart"></i></span>
-                                                </a>
-                                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                    <span><i class="ion-ios-heart"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-            			 </c:forEach>
-            		</div>
-            	</div>
-            	--%>
-        <%--
-        <div class="product-container">
-            <c:forEach var="product" items="${products}">
-                <div class="product-cell">
-                    <a href="/${fn:toLowerCase(message)}">
-                    <c:forEach var="image" items="${product.getImages()}" varStatus="loopCount">
-                        <c:if test="${loopCount.count eq 1}">
-                            <img class="product-image" src="${image.url}"/></a>
-                        </c:if>
-                    </c:forEach>
-                    <div class="product-name">
-                        <a class="product-link" href="/${fn:toLowerCase(message)}">${product.name}</a>
-                    </div>
-                    <div class="product-price">
-                        <a class="product-price-link" href="/${fn:toLowerCase(message)}">${product.price.value} ${" "} ${"ciao"} ${product.price.currencyIso}</a>
-                    </div>
-                </div>
-            </c:forEach>
+        <div class="pagination-wrapper">
+          <div class="pagination">
+            <a class="prev page-numbers" href="javascript:;">prev</a>
+            <span aria-current="page" class="page-numbers current">1</span>
+            <a class="page-numbers" href="javascript:;">2</a>
+            <a class="page-numbers" href="javascript:;">3</a>
+            <a class="page-numbers" href="javascript:;">4</a>
+            <a class="page-numbers" href="javascript:;">5</a>
+            <a class="page-numbers" href="javascript:;">6</a>
+            <a class="page-numbers" href="javascript:;">7</a>
+            <a class="page-numbers" href="javascript:;">8</a>
+            <a class="page-numbers" href="javascript:;">9</a>
+            <a class="page-numbers" href="javascript:;">10</a>
+            <a class="next page-numbers" href="javascript:;">next</a>
+          </div>
         </div>
-        --%>
+
 
         <script src="${commonResourcePath}/dutyFarm/products/js/aos.js"></script>
             <script src="${commonResourcePath}/dutyFarm/products/js/jquery.min.js"></script>
