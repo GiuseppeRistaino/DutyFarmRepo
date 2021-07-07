@@ -12,7 +12,7 @@
 # Create the BaseStore
 #
 
-$productCatalog=dutyFarmCatalog
+$productCatalog=dutyFarmProductCatalog
 $classificationCatalog=dutyFarmClassification
 $currencies=JPY,USD
 $net=false

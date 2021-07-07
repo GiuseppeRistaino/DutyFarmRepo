@@ -11,17 +11,71 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<cms:pageSlot position="TopHeaderSlot" var="component" element="div" >
-	<cms:component component="${component}" />
+<%-- MODIFICHE --%>
+<cms:pageSlot position="TopHeaderSlot" var="component" element="div" class="topHeaderSlot">
+    <cms:component component="${component}" element="div" class="component-topHeader" />
 </cms:pageSlot>
 
+<div class="logo_nav_cart">
+    <cms:pageSlot position="SiteLogo" var="logo" limit="1" element="div" class="siteLogo">
+       <cms:component component="${logo}" element="div" class="siteLogo_Component"/>
+    </cms:pageSlot>
+    <cms:pageSlot position="NavigationBar" var="nav" element="div" class="navBar">
+        <cms:component component="${nav}" element="div" class="navBar_Component"/>
+    </cms:pageSlot>
+    <div class="login-logout">
+        <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+            <li class="liOffcanvas">
+                <ycommerce:testId code="header_Login_link">
+                    <c:url value="/login" var="loginUrl" />
+                    <a href="${fn:escapeXml(loginUrl)}">
+                        <spring:theme code="header.link.login" />
+                    </a>
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+        <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
+            <li class="liOffcanvas">
+                <ycommerce:testId code="header_signOut">
+                    <c:url value="/logout" var="logoutUrl"/>
+                    <a href="${fn:escapeXml(logoutUrl)}">
+                        <spring:theme code="header.link.logout" />
+                    </a>
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+    </div>
+    <div class="account-name">
+        <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+            <c:set var="maxNumberChars" value="25" />
+            <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
+                <c:set target="${user}" property="firstName"
+                    value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+            </c:if>
+
+            <li class="logged_in js-logged_in">
+                <ycommerce:testId code="header_LoggedUser">
+                    <img class="icon-user" src="${commonResourcePath}/dutyFarm/images/user-solid.svg"/>
+                    <spring:theme code="${user.firstName},${user.lastName}" />
+                </ycommerce:testId>
+            </li>
+        </sec:authorize>
+    </div>
+
+    <cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCart">
+      <cms:component component="${cart}" element="div" class="miniCart_Component"/>
+    </cms:pageSlot>
+</div>
+
+
+<%--
 <header class="js-mainHeader">
 	<nav class="navigation navigation--top hidden-xs hidden-sm">
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<div class="nav__left js-site-logo">
 					<cms:pageSlot position="SiteLogo" var="logo" limit="1">
-						<cms:component component="${logo}" element="div" class="yComponentWrapper"/>
+						<cms:component component="${logo}" element="div" class="siteLogo"/>
 					</cms:pageSlot>
 				</div>
 			</div>
@@ -84,7 +138,6 @@
 			</div>
 		</div>
 	</nav>
-	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">
 
@@ -95,13 +148,14 @@
 
 		</ul>
 	</div>
+
 	<nav class="navigation navigation--middle js-navigation--middle">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="mobile__nav__row mobile__nav__row--table">
 					<div class="mobile__nav__row--table-group">
 						<div class="mobile__nav__row--table-row">
-							<div class="mobile__nav__row--table-cell visible-xs hidden-sm">
+						<div class="mobile__nav__row--table-cell visible-xs hidden-sm">
 								<button class="mobile__nav__row--btn btn mobile__nav__row--btn-menu js-toggle-sm-navigation"
 										type="button">
 									<span class="glyphicon glyphicon-align-justify"></span>
@@ -126,8 +180,7 @@
 									</div>
 								</ycommerce:testId>
 							</c:if>
-
-							<cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCartSlot componentContainer mobile__nav__row--table hidden-sm hidden-md hidden-lg">
+							<cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCartSlot componentContainer mobile__nav__row--table">
 								<cms:component component="${cart}" element="div" class="mobile__nav__row--table-cell" />
 							</cms:pageSlot>
 
@@ -138,7 +191,7 @@
 			<div class="row desktop__nav">
 				<div class="nav__left col-xs-12 col-sm-6">
 					<div class="row">
-						<div class="col-sm-2 hidden-xs visible-sm mobile-menu">
+					    <div class="col-sm-2 hidden-xs visible-sm mobile-menu">
 							<button class="btn js-toggle-sm-navigation" type="button">
 								<span class="glyphicon glyphicon-align-justify"></span>
 							</button>
@@ -154,7 +207,7 @@
 				</div>
 				<div class="nav__right col-xs-6 col-xs-6 hidden-xs">
 					<ul class="nav__links nav__links--shop_info">
-						<li>
+					<li>
 							<c:if test="${empty hideHeaderLinks}">
 								<ycommerce:testId code="header_StoreFinder_link">
 									<div class="nav-location hidden-xs">
@@ -166,6 +219,7 @@
 								</ycommerce:testId>
 							</c:if>
 						</li>
+
 						<li>
 							<cms:pageSlot position="MiniCart" var="cart" element="div" class="componentContainer">
 								<cms:component component="${cart}" element="div"/>
@@ -179,6 +233,7 @@
 	<a id="skiptonavigation"></a>
 	<nav:topNavigation />
 </header>
+--%>
 
 <cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">
 	<cms:component component="${component}" />

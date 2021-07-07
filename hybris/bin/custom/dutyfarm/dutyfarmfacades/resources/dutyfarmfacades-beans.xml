@@ -11,12 +11,110 @@
 -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
-	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="genders" type="java.util.List&lt;org.dutyfarm.facades.product.data.GenderData>"/>
-	</bean>
-
 	<bean class="org.dutyfarm.facades.product.data.GenderData">
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;org.dutyfarm.facades.product.data.GenderData>"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.SwatchColorData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.StateData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+
+	<bean class="org.dutyfarm.facades.data.FertilizerProductData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FertilizerVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="weight" type="String"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="state" type="org.dutyfarm.facades.data.StateData"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.SeedProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.SeedVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="weight" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.PlantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="farmland" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerProductData" extends="org.dutyfarm.facades.data.PlantProductData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="weight" type="String"/>
+		<property name="height" type="String"/>
+		<property name="scientificName" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.TreeProductData" extends="org.dutyfarm.facades.data.PlantProductData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.TreeVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="weight" type="String"/>
+		<property name="height" type="String"/>
+		<property name="diameterStem" type="String"/>
+		<property name="origin" type="String"/>
+		<property name="scientificName" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.VegetableProductData" extends="org.dutyfarm.facades.data.PlantProductData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.VegetableVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="weight" type="String"/>
+		<property name="farmingDifficulty" type="String"/>
+		<property name="vegetableColor" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="scientificName" type="String"/>
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerPotProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.FlowerPotVariantProductData" extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="ean" type="String"/>
+		<property name="form" type="String"/>
+		<property name="material" type="String"/>
+		<property name="color" type="org.dutyfarm.facades.data.SwatchColorData"/>
+		<property name="width" type="String"/>
+		<property name="height" type="String"/>
+		<property name="depth" type="String"/>
+	</bean>
+
+
+	<bean class="org.dutyfarm.facades.data.DutyFarmMediaData" extends="de.hybris.platform.cmsfacades.data.MediaData">
+	</bean>
+
+	<bean class="org.dutyfarm.facades.data.DutyFarmCategoryData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+		<property name="picture" type="org.dutyfarm.facades.data.DutyFarmMediaData"/>
+		<property name="thumbnail" type="org.dutyfarm.facades.data.DutyFarmMediaData"/>
+	</bean>
+
+
+
+
 </beans>
+

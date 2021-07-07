@@ -1,0 +1,51 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Media
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=dutyFarmContentCatalog
+$contentCatalogName=dutyfarm Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=dutyFarmProductCatalog
+$productCatalogName=dutyfarm Product Catalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+
+$siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/sampledata/productCatalogs/dutyFarmCatalog/images
+
+# Import Category Media
+INSERT_UPDATE Media;code[unique=true];realfilename;URL;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
+                    ;category-farm.jpg;category-farm.jpg;/farm;$siteResource/category-farm.jpg;;
+                    ;category-plant.jpg;category-plant.jpg;/plant;$siteResource/category-plant.jpg;;
+                    ;category-tree.jpg;category-tree.jpg;/tree;$siteResource/category-tree.jpg;;
+                    ;category-flower.jpg;category-flower.jpg;/flower;$siteResource/category-flower.jpg;;
+                    ;category-vegetable.jpg;category-vegetable.jpg;/vegetable;$siteResource/category-vegetable.jpg;;
+                    ;category-decoration.jpg;category-decoration.jpg;/decoration;$siteResource/category-decoration.jpg;;
+                    ;category-farmland.jpg;category-farmland.jpg;/farmland;$siteResource/category-farmland.jpg;;
+;icons8-albero-64.png;icons8-albero-64.png;/treeProducts;$siteResource/icons8-albero-64.png;;
+;icons8-bouquet-di-fiori-64.png;icons8-bouquet-di-fiori-64.png;/flowerProducts;$siteResource/icons8-bouquet-di-fiori-64.png;;
+;icons8-fattoria-64.png;icons8-fattoria-64.png;/farmProducts;$siteResource/icons8-fattoria-64.png;;
+;icons8-lattuga-64.png;icons8-lattuga-64.png;/vegetableProducts;$siteResource/icons8-lattuga-64.png;;
+;icons8-pianta-da-vaso-64.png;icons8-pianta-da-vaso-64.png;/decorationProducts;$siteResource/icons8-pianta-da-vaso-64.png;;
+;icons8-piantare-a-mano-64.png;icons8-piantare-a-mano-64.png;/plantProducts;$siteResource/icons8-piantare-a-mano-64.png;;
+;icons8-sacco-di-zucchero-64.png;icons8-sacco-di-zucchero-64.png;/farmlandProducts;$siteResource/icons8-sacco-di-zucchero-64.png;;
+
+
+UPDATE Category;code[unique=true];$thumbnail;$picture;allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;Farm;icons8-fattoria-64.png;category-farm.jpg
+;Plant;icons8-piantare-a-mano-64.png;category-plant.jpg
+;Tree;icons8-albero-64.png;category-tree.jpg
+;Flower;icons8-bouquet-di-fiori-64.png;category-flower.jpg
+;Vegetable;icons8-lattuga-64.png;category-vegetable.jpg
+;Decoration;icons8-pianta-da-vaso-64.png;category-decoration.jpg
+;Farmland;icons8-sacco-di-zucchero-64.png;category-farmland.jpg

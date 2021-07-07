@@ -1,0 +1,17 @@
+#########################
+# ySmartEditModule
+#########################
+
+.tscache
+jsTarget
+node_modules
+#**/static-resources/dutyfarmsmartedit
+**/generated/**
+
+# BUNDLE
+smartedit-build
+build
+web/webroot/dutyfarmsmartedit
+**/protractor-conf.js
+**/.jshintrc
+

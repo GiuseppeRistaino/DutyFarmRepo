@@ -1,0 +1,93 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImPex for Importing Product Media
+
+# Macros / Replacement Parameter definitions
+$dutyFarmCatalog = dutyFarmProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$dutyFarmCatalog]),version[default='Staged'])[unique=true,default=$dutyFarmCatalog:Staged]
+$approved=approvalstatus(code)[default='check']
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$siteResource=jar:org.dutyfarm.initialdata.setup.InitialDataSystemSetup&/dutyfarminitialdata/import/sampledata/productCatalogs/dutyFarmCatalog/images
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+INSERT_UPDATE Media;code[unique=true];realfilename;URL;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];$catalogVersion
+                   ;tree-A01.png;tree-A01.png;/A01;$siteResource/tree-A01.png;;
+                   ;tree-A02.png;tree-A02.png;/A02;$siteResource/tree-A02.png;;
+                   ;tree-A03.png;tree-A03.png;/A03;$siteResource/tree-A03.png;;
+                   ;flower-A04.png;flower-A04.png;/A04;$siteResource/flower-A04.png;;
+                   ;flower-A05.png;flower-A05.png;/A05;$siteResource/flower-A05.png;;
+                   ;flower-A06.png;flower-A06.png;/A06;$siteResource/flower-A06.png;;
+                    ;vegetable-A07.png;vegetable-A07.png;/A07;$siteResource/vegetable-A07.png;image/png;
+                    ;vegetable-A08.png;vegetable-A08.png;/A08;$siteResource/vegetable-A08.png;image/png;
+                    ;vegetable-A09.png;vegetable-A09.png;/A09;$siteResource/vegetable-A09.png;image/png;
+                    ;seed-A10.png;seed-A10.png;/A10;$siteResource/seed-A10.png;;
+                    ;seed-A11.png;seed-A11.png;/A11;$siteResource/seed-A11.png;image/png;
+                    ;seed-A12.png;seed-A12.png;/A12;$siteResource/seed-A12.png;;
+                    ;fertilizer-A13.png;fertilizer-A13.png;/A13;$siteResource/fertilizer-A13.png;image/png;
+                    ;fertilizer-A14.png;fertilizer-A14.png;/A14;$siteResource/fertilizer-A14.png;;
+                    ;fertilizer-A15.png;fertilizer-A15.png;/A15;$siteResource/fertilizer-A15.png;;
+                    ;flowerPot-A16.png;flowerPot-A16.png;/A16;$siteResource/flowerPot-A16.png;;
+                    ;flowerPot-A17.png;flowerPot-A17.png;/A17;$siteResource/flowerPot-A17.png;;
+                    ;flowerPot-A18.png;flowerPot-A18.png;/A18;$siteResource/flowerPot-A18.png;;
+
+
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+                            ;tree-A01-container;tree-A01.png;
+                            ;tree-A02-container;tree-A02.png;
+                            ;tree-A03-container;tree-A03.png;
+                            ;flower-A04-container;flower-A04.png;
+                            ;flower-A05-container;flower-A05.png;
+                            ;flower-A06-container;flower-A06.png;
+                            ;vegetable-A07-container;vegetable-A07.png;
+                            ;vegetable-A08-container;vegetable-A08.png;
+                            ;vegetable-A09-container;vegetable-A09.png;
+                            ;seed-A10-container;seed-A10.png;
+                            ;seed-A11-container;seed-A11.png;
+                            ;seed-A12-container;seed-A12.png;
+                            ;fertilizer-A13-container;fertilizer-A13.png;
+                            ;fertilizer-A14-container;fertilizer-A14.png;
+                            ;fertilizer-A15-container;fertilizer-A15.png;
+                            ;flowerPot-A16-container;flowerPot-A16.png;
+                            ;flowerPot-A17-container;flowerPot-A17.png;
+                            ;flowerPot-A18-container;flowerPot-A18.png;
+
+
+INSERT_UPDATE TreeProduct; code [unique=true]; $catalogVersion; $galleryImages
+                         ;A01;;tree-A01-container
+                         ;A02;;tree-A02-container
+                         ;A03;;tree-A03-container
+
+INSERT_UPDATE FlowerProduct; code [unique=true]; $catalogVersion; $galleryImages
+                           ;A04;;flower-A04-container
+                           ;A05;;flower-A05-container
+                           ;A06;;flower-A06-container
+
+INSERT_UPDATE VegetableProduct; code [unique=true]; $catalogVersion; $galleryImages
+                              ;A07;;vegetable-A07-container
+                              ;A08;;vegetable-A08-container
+                              ;A09;;vegetable-A09-container
+
+INSERT_UPDATE SeedProduct; code [unique=true]; $catalogVersion; $galleryImages
+                         ;A10;;seed-A10-container
+                         ;A11;;seed-A11-container
+                         ;A12;;seed-A12-container
+
+INSERT_UPDATE FertilizerProduct; code [unique=true]; $catalogVersion; $galleryImages
+                               ;A13;;fertilizer-A13-container
+                               ;A14;;fertilizer-A14-container
+                               ;A15;;fertilizer-A15-container
+
+INSERT_UPDATE FlowerPotProduct; code [unique=true]; $catalogVersion; $galleryImages
+                              ;A16;;flowerPot-A16-container
+                              ;A17;;flowerPot-A17-container
+                              ;A18;;flowerPot-A18-container

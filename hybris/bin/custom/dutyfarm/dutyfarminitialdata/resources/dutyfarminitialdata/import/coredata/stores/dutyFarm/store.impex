@@ -1,0 +1,49 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# 
+# Create the BaseStore
+#
+
+$productCatalog=dutyFarmProductCatalog
+$classificationCatalog=dutyFarmClassification
+$currencies=EUR
+$net=false
+$storeUid=dutyFarm
+$defaultCurrency=EUR
+$languages=ja,en,de,zh
+$defaultLanguage=en
+$unitedKingdom=GB,GG,IM,JE
+$europeNotUK=AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FO,FR,GI,GL,GR,HR,HU,IE,IS,IT,LI,LT,LU,LV,MC,MD,ME,MK,MT,NL,NO,PL,PT,RO,RS,RU,SE,SI,SK,SM,TR,UA,VA
+$asianCountries=CN,JP,VN,HK,KP,KR
+$deliveryCountries=$unitedKingdom,$europeNotUK,$asianCountries,US
+$billingCountries=$unitedKingdom,$europeNotUK,CN,JP,VN,HK,KR,US
+$orderProcessCode=order-process
+$pickupInStoreMode=BUY_AND_COLLECT
+$customerAllowedToIgnoreSuggestions=true
+$paymentProvider=Mockup
+$expressCheckoutEnabled=true
+$returnProcessCode=return-process
+
+
+INSERT_UPDATE PromotionGroup;Identifier[unique=true];
+;dutyfarmPromoGrp;
+
+# Base Store
+INSERT_UPDATE DutyFarm;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;paymentProvider;name;city;address
+;$storeUid;$productCatalog,$classificationCatalog;$currencies;$net;jp-taxes;km;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$paymentProvider;Duty Farm;Napoli;via Giacomini
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+                                       ;dutyFarm;premium-net
+                                       ;dutyFarm;standard-net
+                                       ;dutyFarm;premium-gross
+                                       ;dutyFarm;standard-gross
+                                       ;dutyFarm;pickup
+                                       ;dutyFarm;free-standard-shipping

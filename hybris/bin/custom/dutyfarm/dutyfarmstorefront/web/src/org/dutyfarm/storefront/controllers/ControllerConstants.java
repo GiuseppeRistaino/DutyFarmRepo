@@ -77,9 +77,29 @@ public interface ControllerConstants
 
 		interface Pages
 		{
+			interface DutyFarm
+			{
+				String DutyFarmFertilizerPage = "pages/dutyFarm/fertilizers";
+				String DutyFarmPlantPage = "pages/dutyFarm/plants";
+				String DutyFarmFlowerPage = "pages/dutyFarm/flowers";
+				String DutyFarmTreePage = "pages/dutyFarm/trees";
+				String DutyFarmVegetablePage = "pages/dutyFarm/vegetables";
+				String DutyFarmSeedPage = "pages/dutyFarm/seeds";
+				String DutyFarmFlowerPotPage = "pages/dutyFarm/flowerPots";
+				String DutyFarmFertilizerVariantPage = "pages/dutyFarm/fertilizerVariants";
+				String DutyFarmFlowerVariantPage = "pages/dutyFarm/flowerVariants";
+				String DutyFarmTreeVariantPage = "pages/dutyFarm/treeVariants";
+				String DutyFarmVegetableVariantPage = "pages/dutyFarm/vegetableVariants";
+				String DutyFarmSeedVariantPage = "pages/dutyFarm/seedVariants";
+				String DutyFarmFlowerPotVariantPage = "pages/dutyFarm/flowerPotVariants";
+				String DutyFarmShopPage = "pages/dutyFarm/shop";
+				String DutyFarmFarmPage = "pages/dutyFarm/products";
+			}
+
 			interface Account // NOSONAR
 			{
-				String AccountLoginPage = "pages/account/accountLoginPage"; // NOSONAR
+				//String AccountLoginPage = "pages/account/accountLoginPage"; // NOSONAR
+				String AccountLoginPage = "pages/dutyFarm/login";
 				String AccountHomePage = "pages/account/accountHomePage"; // NOSONAR
 				String AccountOrderHistoryPage = "pages/account/accountOrderHistoryPage"; // NOSONAR
 				String AccountOrderPage = "pages/account/accountOrderPage"; // NOSONAR
@@ -90,7 +110,8 @@ public interface ControllerConstants
 				String AccountAddressBookPage = "pages/account/accountAddressBookPage"; // NOSONAR
 				String AccountEditAddressPage = "pages/account/accountEditAddressPage"; // NOSONAR
 				String AccountPaymentInfoPage = "pages/account/accountPaymentInfoPage"; // NOSONAR
-				String AccountRegisterPage = "pages/account/accountRegisterPage"; // NOSONAR
+				//String AccountRegisterPage = "pages/account/accountRegisterPage"; // NOSONAR
+				String AccountRegisterPage = "pages/dutyFarm/register"; // NOSONAR
 			}
 
 			interface Checkout // NOSONAR

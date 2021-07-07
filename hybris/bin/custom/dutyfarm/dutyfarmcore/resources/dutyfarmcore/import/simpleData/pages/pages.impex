@@ -1,0 +1,79 @@
+$contentCatalog=dutyFarmContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+                          ;;DutyFarmHomepageTemplate;DutyFarm Homepage Template;dutyFarm/homepage;ContentPage
+                          ;;RegisterPageTemplate;DutyFarm Register Template; pages/account/accountRegisterPage;ContentPage
+                          ;;DutyFarmAboutTemplate;DutyFarm About Template; dutyFarm/about;ContentPage
+                          ;;DutyFarmFAQTemplate;DutyFarm FAQ Template; dutyFarm/FAQ;ContentPage
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage
+                         ;;DutyFarmHomepageContentPage;DutyFarm Homepage Content Page;DutyFarmHomepageTemplate;dutyFarmHomepageCMSPage;;;true
+                         ;;register;Register Page;RegisterPageTemplate;register;;;false
+                         ;;DutyFarmAboutContentPage;DutyFarm About Content Page;DutyFarmAboutTemplate;dutyFarmAboutCMSPage;;;false
+                         ;;DutyFarmFAQContentPage;DutyFarm FAQ Content Page;DutyFarmFAQTemplate;dutyFarmFAQCMSPage;;;false
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                             ;SiteLogo;;;logo
+                             ;MiniCart;;;minicart
+                             ;NavigationBar;;;navigation
+                             ;Footer;;;footer
+                             ;TopHeaderSlot;;;wide
+                             ;SectionA;;;wide
+                             ;SectionB;;;wide
+                             ;SectionC;;;wide
+                             ;Carousel;;;wide
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+                         ;;SiteLogoSlot;Default Site Logo Slot;true
+                         ;;NavigationBarSlot;Navigation Bar;true
+                         ;;FooterSlot;Footer;true
+                         ;;TopHeaderSlot;Top Header;true
+                         ;;MiniCartSlot;MiniCart Slot; true
+                         ;;SectionASlot;SectionA Slot;true
+                         ;;SectionBSlot;SectionB Slot;true
+                         ;;SectionCSlot;SectionC Slot;true
+                         ;;CarouselSlot;Carousel Slot;true
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DutyFarmHomepageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;;SiteLogo-Homepage;SiteLogo;;SiteLogoSlot;true
+                                    ;;TopHeaderSlot-Homepage;TopHeaderSlot;;TopHeaderSlot;true
+                                    ;;NavigationBar-Homepage;NavigationBar;;NavigationBarSlot;true
+                                    ;;MiniCart-Homepage;MiniCart;;MiniCartSlot;true
+                                    ;;Footer-Homepage;Footer;;FooterSlot;true
+                                    ;;SectionA-Homepage;SectionA;;SectionASlot;true
+                                    ;;SectionB-Homepage;SectionB;;SectionBSlot;true
+                                    ;;SectionC-Homepage;SectionC;;SectionCSlot;true
+                                    ;;Carousel-Homepage;Carousel;;CarouselSlot;true
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;target(code)[default='sameWindow'];;
+                              ;;HomeLink;Home Link;/homepage;;;;
+                              ;;ShopLink;Shop Link;/shop;;;;
+                              ;;AboutLink;About Link;/about;;;;
+                              ;;LoginLink;Login Link;/login;;;;
+                              ;;RegisterLink;Register Link;/register;;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=append];links(uid, $contentCV);&nodeRef;
+                               ;root;;root;;;;root;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=append];links(uid, $contentCV);&nodeRef;
+                               ;SiteRootNode;;SiteRootNode;root;;;SiteRootNode;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=append];links(uid, $contentCV);&nodeRef;
+                               ;DutyFarmNavNode;;DutyFarm Site;SiteRootNode;;;DutyFarmNavNode;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;
+                               ;HomeNavigationNavNode;;Home;DutyFarmNavNode;HomeNavigationNavNode
+                               ;ShopNavigationNavNode;;Shop;DutyFarmNavNode;ShopNavigationNavNode
+                               ;AboutNavigationNavNode;;About;DutyFarmNavNode;AboutNavigationNavNode
+                               ;LoginNavigationNavNode;;Login;DutyFarmNavNode;LoginNavigationNavNode
+                               ;RegisterNavigationNavNode;;Sign in;DutyFarmNavNode;RegisterNavigationNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+                                ;HomeNavNodeEntry;;Home Navigation Node Entry;HomeNavigationNavNode;HomeLink;
+                                ;ShopNavNodeEntry;;Shop Navigation Node Entry;ShopNavigationNavNode;ShopLink;
+                                ;AboutNavNodeEntry;;About Navigation Node Entry;AboutNavigationNavNode;AboutLink;
+                                ;LoginNavNodeEntry;;Login Navigation Node Entry;LoginNavigationNavNode;LoginLink;
+                                ;RegisterNavNodeEntry;;Register Navigation Node Entry;RegisterNavigationNavNode;RegisterLink;
+

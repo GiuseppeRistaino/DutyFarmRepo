@@ -4,8 +4,12 @@
 
 
 <footer>
-    <cms:pageSlot position="Footer" var="feature">
-        <cms:component component="${feature}"/>
+    <%-- <hr class="hr-footer"> --%>
+
+    <cms:pageSlot position="Footer" var="feature" element="div" class="footerSlot">
+        <cms:component component="${feature}" element="div" class="footerComponent"/>
     </cms:pageSlot>
+
+
 </footer>
 

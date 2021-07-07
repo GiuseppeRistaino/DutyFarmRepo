@@ -1,12 +1,37 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format"%>
+<%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<div class="cart-container">
+    <div class="cart-icon">
+		<%--<i class="fas fa-shopping-cart"></i>--%>
+		<%--<img class="icon-minicart" src="${commonResourcePath}/dutyFarm/images/shopping-cart-solid.svg"/>--%>
+		<img class="icon-minicart" src="${commonResourcePath}/dutyFarm/images/icons8-carrello-della-spesa-64.png"/>
+	</div>
+	<div class="cart-price">
+		<c:if test="${totalDisplay == 'TOTAL'}">
+			<format:price priceData="${totalPrice}" />
+		</c:if>
+
+		<c:if test="${totalDisplay == 'SUBTOTAL'}">
+		    <format:price priceData="${subTotal}" />
+		</c:if>
+
+		<c:if test="${totalDisplay == 'TOTAL_WITHOUT_DELIVERY'}">
+			<format:price priceData="${totalNoDelivery}" />
+		</c:if>
+	</div>
+	<div class="cart-count"><span class="items-total">${totalItems lt 100 ? fn:escapeXml(totalItems) : "99+"}<span class="items-desktop hidden-xs">&nbsp;<spring:theme code="basket.items"/></span></span></div>
+
+</div>
+
+<%-- MODIFICA ICONA CART
 <spring:url value="/cart/miniCart/{/totalDisplay}" var="refreshMiniCartUrl" htmlEscape="false">
 	<spring:param name="totalDisplay"  value="${totalDisplay}"/>
 </spring:url>
@@ -24,8 +49,10 @@
 		data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
 		data-mini-cart-items-text="<spring:theme code="basket.items"/>"
 		>
+
+
 		<div class="mini-cart-icon">
-			<span class="glyphicon glyphicon-shopping-cart "></span>
+			<i class="fas fa-shopping-cart"></i>
 		</div>
 		<ycommerce:testId code="miniCart_items_label">
 
@@ -43,8 +70,10 @@
 				</c:if>
 			</div>
 			<div class="mini-cart-count js-mini-cart-count"><span class="nav-items-total">${totalItems lt 100 ? fn:escapeXml(totalItems) : "99+"}<span class="items-desktop hidden-xs">&nbsp;<spring:theme code="basket.items"/></span></span></div>
+
 		</ycommerce:testId>
 
 	</a>
 </div>
 <div class="mini-cart-container js-mini-cart-container"></div>
+--%>

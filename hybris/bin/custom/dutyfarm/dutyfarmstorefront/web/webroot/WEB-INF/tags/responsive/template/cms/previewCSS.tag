@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<%--
 <c:if test="${cmsPageRequestContextData.liveEdit}">
 
     <c:if test="${empty addOnLiveEditCommonCssPaths and empty addOnLiveEditThemeCssPaths}">
@@ -19,3 +20,4 @@
         </c:forEach>
     </c:if>
 </c:if>
+--%>

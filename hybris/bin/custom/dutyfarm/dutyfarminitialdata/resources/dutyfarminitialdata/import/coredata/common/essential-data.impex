@@ -35,7 +35,7 @@ INSERT_UPDATE Language;isocode[unique=true];fallbackLanguages(isocode);active[de
 INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
 ;GBP;1;2;£
 ;EUR;1;2;€
-;USD;1,4;2;$
+;USD;1.4;2;$
 ;JPY;120;0;¥
 
 # SiteMap Language Currencies
@@ -60,14 +60,15 @@ INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)
 # Vendor
 INSERT_UPDATE Vendor;code[unique=true];name
 ;default;Default Vendor
+;duty;
 
 # Warehouse
 INSERT_UPDATE Warehouse;code[unique=true];name;vendor(code)[default=default];default[default=true]
 ;default;Default Warehouse;
-;warehouse_s;Warehouse South;
-;warehouse_e;Warehouse East;
-;warehouse_w;Warehouse West;
-;warehouse_n;Warehouse North;
+;warehouse_s;Warehouse South;duty;
+;warehouse_e;Warehouse East;duty;
+;warehouse_w;Warehouse West;duty;
+;warehouse_n;Warehouse North;duty;
 
 # Disable preview for email pages
 UPDATE CMSPageType;code[unique=true];previewDisabled
@@ -87,6 +88,7 @@ INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
 ;email-body;email-body
 ;email-attachments;email-attachments
+;documents;documents
 
 # Media formats
 INSERT_UPDATE MediaFormat;qualifier[unique=true]
@@ -97,6 +99,10 @@ INSERT_UPDATE MediaFormat;qualifier[unique=true]
 ;96Wx96H
 ;65Wx65H
 ;30Wx30H
+;mobile
+;tablet
+;desktop
+;widescreen
 
 # Tax & Tax Groups
 INSERT_UPDATE UserTaxGroup;code[unique=true]
@@ -125,3 +131,9 @@ INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
 INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 ;cartRemovalJob;cartRemovalJob
 ;siteMapMediaJob;siteMapMediaJob
+
+INSERT_UPDATE SiteTheme;code[unique=true]
+                       ;black
+                       ;blue
+                       ;alpha
+                       ;lambda
